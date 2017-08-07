@@ -3,9 +3,11 @@
 
 import { combineReducers } from 'redux';
 import dummy from './dummy';
+import categories from './categories';
 
 const rootReducer = combineReducers({
   dummy,
+  categories,
 });
 
 export default rootReducer;
