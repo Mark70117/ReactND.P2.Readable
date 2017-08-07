@@ -2,26 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import CategoryTodo from './CategoryTodo';
-import CategoryDetails from './CategoryDetails';
 
-class CategoryView extends React.Component {
+class CategoryTodo extends React.Component {
   componentDidMount() {
-    console.log('CategoryView componentDidMount');
+    console.log('CategoryTodo componentDidMount');
   }
   render() {
     const { dummy } = this.props;
 
     return (
-      <Switch>
-        <Route exact path="/category" component={CategoryTodo} />
-        <Route path="/category/:categoryStr" component={CategoryDetails} />
-      </Switch>
+      <div className="CategoryTodo">
+        <ul>
+          <li>
+            identical to the default view, but filtered to only include post
+            with the selected category TODO
+          </li>
+        </ul>
+      </div>
     );
   }
 }
 
-CategoryView.propTypes = {
+CategoryTodo.propTypes = {
   dummy: PropTypes.array.isRequired,
 };
 
@@ -33,4 +35,4 @@ const mapDispatchToProps = dispatch => ({
   //setCategories: data => dispatch(syncCategories(data)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryView);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryTodo);
