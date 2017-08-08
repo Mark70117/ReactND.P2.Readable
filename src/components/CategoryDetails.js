@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import CategoryLink from './CategoryLink';
+import CategoryNavContainer from './CategoryNavContainer';
 
 class CategoryDetails extends React.Component {
   componentDidMount() {
@@ -17,9 +17,7 @@ class CategoryDetails extends React.Component {
         <h1>
           {match.params.categoryStr}
         </h1>
-        <CategoryLink category={'redux'}>Redux</CategoryLink>
-        <CategoryLink category={'react'}>React</CategoryLink>
-        <CategoryLink category={'udacituy'}> Udacity</CategoryLink>
+        <CategoryNavContainer />
       </div>
     );
   }

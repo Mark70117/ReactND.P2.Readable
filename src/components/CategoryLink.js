@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 const CategoryLink = ({ category, children }) =>
   <NavLink
     to={'/category/' + category}
+    className="nav"
     activeStyle={{
       textDecoration: 'none',
       color: 'black',

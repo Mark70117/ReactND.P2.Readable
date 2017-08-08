@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCategories } from '../utils/api';
 import { syncCategories } from '../actions';
-import CategoryLink from './CategoryLink';
+import CategoryNavContainer from './CategoryNavContainer';
 import './../App.css';
 
 class App extends React.Component {
@@ -38,9 +38,7 @@ class App extends React.Component {
           </li>
           <li>TODO should have a control for adding a new post</li>
         </ul>
-        <CategoryLink category={'redux'}>Redux</CategoryLink>
-        <CategoryLink category={'react'}>React</CategoryLink>
-        <CategoryLink category={'udacituy'}> Udacity</CategoryLink>
+        <CategoryNavContainer />
       </div>
     );
   }
