@@ -1,12 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
 import CategoryLink from './CategoryLink';
+import { getCategories } from '../utils/api';
+import { syncCategories } from '../actions';
 
 class CategoryNavContainer extends React.Component {
   componentDidMount() {
-    console.log('CategoryNavContainer componentDidMount');
+    console.log(
+      'CategoryNavContainer componentDidMount ' +
+        Object.keys(this.props.categories).length
+    );
+    const { setCategories } = this.props;
+    if (Object.keys(this.props.categories).length === 0) {
+      getCategories().then(categories => {
+        console.log('categories :' + JSON.stringify(categories, null, 4));
+        setCategories(categories);
+      });
+    }
   }
   render() {
     const { dummy, categories } = this.props;
@@ -17,7 +28,7 @@ class CategoryNavContainer extends React.Component {
     return (
       <div>
         {Object.values(categories).map(element =>
-          <CategoryLink category={element.name}>
+          <CategoryLink key={element.name} category={element.name}>
             {element.name}
           </CategoryLink>
         )}
@@ -28,6 +39,7 @@ class CategoryNavContainer extends React.Component {
 
 CategoryNavContainer.propTypes = {
   dummy: PropTypes.array.isRequired,
+  match: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
@@ -36,7 +48,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  //setCategories: data => dispatch(syncCategories(data)),
+  setCategories: data => dispatch(syncCategories(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(

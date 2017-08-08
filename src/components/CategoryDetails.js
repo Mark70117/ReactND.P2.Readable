@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
 import CategoryNavContainer from './CategoryNavContainer';
 
 class CategoryDetails extends React.Component {
@@ -10,14 +9,14 @@ class CategoryDetails extends React.Component {
   }
   render() {
     const { dummy, match } = this.props;
-    console.log('CategoryDetails' + match);
+    console.log('CategoryDetails' + JSON.stringify(match, null, 4));
 
     return (
       <div>
         <h1>
           {match.params.categoryStr}
         </h1>
-        <CategoryNavContainer />
+        <CategoryNavContainer match={match} />
       </div>
     );
   }
@@ -25,6 +24,7 @@ class CategoryDetails extends React.Component {
 
 CategoryDetails.propTypes = {
   dummy: PropTypes.array.isRequired,
+  match: PropTypes.object,
 };
 
 const mapStateToProps = state => ({

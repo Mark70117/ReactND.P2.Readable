@@ -1,21 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getCategories } from '../utils/api';
-import { syncCategories } from '../actions';
 import CategoryNavContainer from './CategoryNavContainer';
 import './../App.css';
 
 class App extends React.Component {
   componentDidMount() {
-    const { setCategories } = this.props;
-    console.log('fluf');
-    getCategories().then(categories => {
-      console.log('pre sync ');
-      console.log('categories :' + JSON.stringify(categories, null, 4));
-      setCategories(categories);
-      console.log('post sync');
-    });
+    console.log('App componentDidMount');
   }
   render() {
     const { dummy } = this.props;
@@ -53,7 +44,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCategories: data => dispatch(syncCategories(data)),
+  //setCategories: data => dispatch(syncCategories(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

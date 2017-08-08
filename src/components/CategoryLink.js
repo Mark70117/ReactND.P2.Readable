@@ -1,10 +1,13 @@
 //https://egghead.io/lessons/javascript-redux-navigating-with-react-router-link?series=building-react-applications-with-idiomatic-redux
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import { NavLink } from 'react-router-dom';
 
 const CategoryLink = ({ category, children }) =>
   <NavLink
+    exact
     to={'/category/' + category}
     className="nav"
     activeStyle={{
