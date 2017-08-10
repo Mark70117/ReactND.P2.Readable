@@ -25,7 +25,7 @@ export const getCategoryPosts = category =>
     .then(res => res.json())
     .then(data => {
       console.log('getCategoryPosts data:' + JSON.stringify(data, null, 4));
-      return { posts: data.posts };
+      return data;
     });
 
 // GET /posts
@@ -34,7 +34,7 @@ export const getCategoryPosts = category =>
 export const getPosts = () =>
   fetch(`${api}/posts`, { headers }).then(res => res.json()).then(data => {
     console.log('getPosts data:' + JSON.stringify(data, null, 4));
-    return { posts: data };
+    return data;
   });
 
 // POST /posts

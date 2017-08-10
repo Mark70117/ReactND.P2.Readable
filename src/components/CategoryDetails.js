@@ -1,7 +1,10 @@
+//https://egghead.io/lessons/javascript-redux-fetching-data-on-route-change
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import CategoryNavContainer from './CategoryNavContainer';
+import PostListContainer from './PostListContainer';
 
 class CategoryDetails extends React.Component {
   componentDidMount() {
@@ -17,6 +20,7 @@ class CategoryDetails extends React.Component {
           {match.params.categoryStr}
         </h1>
         <CategoryNavContainer match={match} />
+        <PostListContainer match={match} />
       </div>
     );
   }
@@ -35,4 +39,6 @@ const mapDispatchToProps = dispatch => ({
   //setCategories: data => dispatch(syncCategories(data)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryDetails);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CategoryDetails)
+);
