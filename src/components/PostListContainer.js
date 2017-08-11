@@ -69,9 +69,21 @@ PostListContainer.propTypes = {
   match: PropTypes.object, // from route??
 };
 
-const mapStateToProps = state => ({
-  posts: state.posts,
-});
+const mapStateToProps = (state, ownProps) => {
+  console.log('PostListContainer ownProps' + JSON.stringify(ownProps, null, 4));
+  const categoryStr = ownProps.match.params.categoryStr
+    ? ownProps.match.params.categoryStr
+    : '';
+  console.log(
+    'PostListContainer categoryStr' + JSON.stringify(categoryStr, null, 4)
+  );
+
+  return {
+    posts: Object.values(state.posts)
+      .filter(post => !post.deleted)
+      .filter(post => categoryStr === '' || post.category === categoryStr), // when all the sorting and deleting going to happen TODO
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   mergePosts: data => dispatch(syncPosts(data)),
