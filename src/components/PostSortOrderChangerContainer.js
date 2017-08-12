@@ -6,8 +6,8 @@ import { setPostSortOrder } from '../actions';
 
 class PostSortOrderChangerContainer extends Component {
   static propTypes = {
-    shelf: PropTypes.string.isRequired,
-    moveToShelf: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired,
+    changePostSortOrder: PropTypes.func.isRequired,
   };
 
   handleChange = event => {

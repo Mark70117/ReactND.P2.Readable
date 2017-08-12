@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class PostSortOrderChanger extends Component {
   static propTypes = {
-    sortOrder: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
   };
   handleChange = event => {
