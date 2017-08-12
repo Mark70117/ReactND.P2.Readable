@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PostDetailsLink from './PostDetailsLink';
+import { dateFromEpochInt } from '../utils/date.js';
 
 const PostList = ({ posts }) =>
   <ol>
     {posts.map(post =>
       <li key={post.id}>
-        <PostDetailsLink postId={post.id}>{post.title}</PostDetailsLink>,{post.voteScore},{post.timestamp}
+        {post.voteScore},<PostDetailsLink postId={post.id}>
+          {post.title}
+        </PostDetailsLink>,{dateFromEpochInt(post.timestamp)}
       </li>
     )}
   </ol>;

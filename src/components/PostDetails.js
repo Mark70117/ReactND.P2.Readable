@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-
+import { dateFromEpochInt } from '../utils/date.js';
 import FaTrash from 'react-icons/lib/fa/trash';
 
 class PostDetails extends Component {
@@ -45,7 +45,7 @@ class PostDetails extends Component {
             Author: {post.author}
           </li>
           <li>
-            Timestamp: {post.timestamp}
+            Timestamp: {dateFromEpochInt(post.timestamp)}
           </li>
           <li>
             VoteScore: {post.voteScore}
