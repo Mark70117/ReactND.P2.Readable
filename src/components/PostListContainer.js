@@ -2,14 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PostList from './PostList';
+import PostSortOrderChangerContainer from './PostSortOrderChangerContainer';
 import { getPosts } from '../utils/api';
 import { getCategoryPosts } from '../utils/api';
 import { syncPosts } from '../actions';
-
-const postSortVoteAscending = (a, b) => a.voteScore > b.voteScore;
-const postSortVoteDecending = (a, b) => a.voteScore < b.voteScore;
-const postSortTimestampAscending = (a, b) => a.timestamp > b.timestamp;
-const postSortTimeStampDecending = (a, b) => a.timestamp < b.timestamp;
 
 const getAppropriatePost = (mergePosts, match) => {
   if (match && match.params && match.params.categoryStr) {
@@ -64,6 +60,7 @@ class PostListContainer extends React.Component {
 
     return (
       <div>
+        <PostSortOrderChangerContainer />
         <PostList posts={posts} />
       </div>
     );
@@ -87,7 +84,7 @@ const mapStateToProps = (state, ownProps) => {
     posts: Object.values(state.posts)
       .filter(post => !post.deleted)
       .filter(post => categoryStr === '' || post.category === categoryStr)
-      .sort(postSortVoteAscending), // when all the sorting and deleting going to happen TODO
+      .sort(state.postSortOrder), // when all the sorting and deleting going to happen TODO
   };
 };
 
