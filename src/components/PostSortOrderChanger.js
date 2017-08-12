@@ -12,10 +12,10 @@ class PostSortOrderChanger extends Component {
   };
 
   render() {
-    const { sortOrder, onChange } = this.props;
+    const { value, onChange } = this.props;
     return (
       <div className="book-shelf-changer">
-        <select value={sortOrder} onChange={this.handleChange}>
+        <select value={value} onChange={this.handleChange}>
           <option value="postSortVoteAscending">Votes (ascending)</option>
           <option value="postSortVoteDecending">Votes (descending)</option>
           <option value="postSortTimestampAscending">

@@ -31,7 +31,7 @@ const mapStateToProps = (state, ownProps) => {
   );
 
   return {
-    value: state.sortOrder,
+    value: state.postSortOrder.str,
   };
 };
 

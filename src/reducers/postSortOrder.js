@@ -5,7 +5,10 @@ const postSortVoteDecending = (a, b) => a.voteScore < b.voteScore;
 const postSortTimestampAscending = (a, b) => a.timestamp > b.timestamp;
 const postSortTimeStampDecending = (a, b) => a.timestamp < b.timestamp;
 
-const initialState = postSortVoteAscending;
+const initialState = {
+  str: 'postSortVoteDecending',
+  func: postSortVoteDecending,
+};
 
 const stringToFunc = sortOrderStr => {
   switch (sortOrderStr) {
@@ -30,7 +33,7 @@ export default function categories(state = initialState, action) {
 
   switch (action.type) {
     case SET_POST_SORT_ORDER:
-      return stringToFunc(action.sortOrder);
+      return { str: action.sortOrder, func: stringToFunc(action.sortOrder) };
     default:
       return state;
   }
