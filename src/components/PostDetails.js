@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
+
+import FaTrash from 'react-icons/lib/fa/trash';
 
 class PostDetails extends Component {
   static propTypes = {
@@ -13,14 +16,24 @@ class PostDetails extends Component {
   };
 
   handleDelete = event => {
-    const { onDelete } = this.props;
+    const { post, onDelete } = this.props;
+    console.log('handleDelete event' + JSON.stringify(post.id, null, 4));
+    onDelete();
   };
   loadingPost() {
-    return <div className="post-details">Loading...</div>;
+    return (
+      <div className="post-details">
+        '}<NavLink to="/">Home</NavLink>Loading...
+      </div>
+    );
   }
   livePost(post) {
     return (
       <div className="post-details">
+        <NavLink to="/">Home</NavLink>
+        <button className="icon-btn" onClick={this.handleDelete}>
+          <FaTrash size={16} />
+        </button>
         <ul>
           <li>
             Title:{post.title}
@@ -42,7 +55,12 @@ class PostDetails extends Component {
     );
   }
   deletedPost() {
-    return <div className="post-details">Post has been deleted</div>;
+    return (
+      <div className="post-details">
+        {' '}<NavLink to="/">Home</NavLink>
+        Post has been deleted
+      </div>
+    );
   }
 
   render() {

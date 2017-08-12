@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import CategoryNavContainer from './CategoryNavContainer';
 import PostListContainer from './PostListContainer';
 
@@ -16,6 +16,7 @@ class CategoryDetails extends React.Component {
 
     return (
       <div>
+        <NavLink to="/">Home</NavLink>
         <h1>
           {match.params.categoryStr}
         </h1>

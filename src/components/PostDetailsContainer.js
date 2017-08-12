@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PostDetails from './PostDetails';
 import { setPostSortOrder } from '../actions';
 import { getPostsId } from '../utils/api';
+import { deletePostsId } from '../utils/api';
 import { syncPosts } from '../actions';
 
 class PostDetailsContainer extends Component {
@@ -22,8 +23,14 @@ class PostDetailsContainer extends Component {
   onEdit = () => {
     console.log('TODO');
   };
+
   onDelete = () => {
-    console.log('TODO');
+    const { post, mergePosts } = this.props;
+
+    console.log('PostDetailsContainer onDelete');
+
+    mergePosts([{ ...post, deleted: true, timestamp: Date.now() }]);
+    deletePostsId(post.id);
   };
 
   render() {
@@ -41,7 +48,7 @@ const mapStateToProps = (state, ownProps) => {
   );
 
   return {
-    post: state.posts[ownProps.postId], // FIX
+    post: state.posts[ownProps.postId],
   };
 };
 

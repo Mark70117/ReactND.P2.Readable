@@ -79,6 +79,13 @@ export const getPostsId = id =>
 // USAGE:
 // Sets the deleted flag for a post to 'true'.
 // Sets the parentDeleted flag for all child comments to 'true'.
+export const deletePostsId = id => {
+  console.log('deletePostId: ' + id);
+  fetch(`${api}/posts/${id}`, { headers, method: 'DELETE' }).then(data => {
+    console.log('deletePostsId data: ' + JSON.stringify(data, null, 4));
+    return data;
+  });
+};
 
 // GET /posts/:id/comments
 // USAGE:
