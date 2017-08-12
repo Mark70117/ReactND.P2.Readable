@@ -57,7 +57,7 @@ export const getPostsId = id =>
     .then(res => res.json())
     .then(data => {
       console.log('getPosts data:' + JSON.stringify(data, null, 4));
-      return { post: data };
+      return data;
     });
 
 // POST /posts/:id

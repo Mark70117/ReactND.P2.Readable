@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import PostDetailsLink from './PostDetailsLink';
 
 const PostList = ({ posts }) =>
   <ol>
     {posts.map(post =>
       <li key={post.id}>
-        {post.title},{post.voteScore},{post.timestamp}
+        <PostDetailsLink postId={post.id}>{post.title}</PostDetailsLink>,{post.voteScore},{post.timestamp}
       </li>
     )}
   </ol>;

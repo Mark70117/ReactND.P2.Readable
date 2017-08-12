@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PostDetailsContainer from './PostDetailsContainer';
 
 class PostDetailView extends React.Component {
   componentDidMount() {
     console.log('PostDetailView componentDidMount');
   }
   render() {
-    const { dummy } = this.props;
+    const { dummy, match } = this.props;
 
     return (
       <div className="PostDetailView">
@@ -33,6 +34,10 @@ class PostDetailView extends React.Component {
             TODO comments should also have controls for editing or deleting
           </li>
         </ul>
+        <PostDetailsContainer postId={match.params.postId} />
+        <h1>
+          {match.params.postId}
+        </h1>
       </div>
     );
   }
@@ -40,6 +45,7 @@ class PostDetailView extends React.Component {
 
 PostDetailView.propTypes = {
   dummy: PropTypes.array.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

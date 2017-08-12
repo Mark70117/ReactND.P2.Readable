@@ -10,12 +10,6 @@ class PostSortOrderChangerContainer extends Component {
     changePostSortOrder: PropTypes.func.isRequired,
   };
 
-  handleChange = event => {
-    const { moveToShelf } = this.props;
-
-    moveToShelf(event.target.value);
-  };
-
   render() {
     const { value, changePostSortOrder } = this.props;
 
