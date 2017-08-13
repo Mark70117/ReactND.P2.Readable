@@ -1,4 +1,5 @@
 //http://redux-form.com/7.0.3/examples/initializeFromState/
+// TODO http://redux-form.com/7.0.3/examples/syncValidation/
 
 import React from 'react';
 import { connect } from 'react-redux';
