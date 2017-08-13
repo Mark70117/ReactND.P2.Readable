@@ -34,6 +34,7 @@ class PostDetails extends Component {
         <button className="icon-btn" onClick={this.handleDelete}>
           <FaTrash size={16} />
         </button>
+        <NavLink to="/postedit">Edit</NavLink>
         <ul>
           <li>
             Title:{post.title}
@@ -64,7 +65,7 @@ class PostDetails extends Component {
   }
 
   render() {
-    const { post, onEdit, onDelete } = this.props;
+    const { post } = this.props;
     return post
       ? post.deleted ? this.deletedPost() : this.livePost(post)
       : this.loadingPost();

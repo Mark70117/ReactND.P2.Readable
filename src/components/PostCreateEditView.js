@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PostForm from './PostForm';
 
 class PostCreateEditView extends React.Component {
   componentDidMount() {
     console.log('PostCreateEditView componentDidMount');
+  }
+  foobar(values) {
+    console.log('PostCreateEditView handleSubmit' + JSON.stringify(values));
   }
   render() {
     const { dummy } = this.props;
@@ -13,26 +17,13 @@ class PostCreateEditView extends React.Component {
       <div className="PostCreateEditView">
         <ul>
           <li>
-            TODO should show the details of a post, including: Title, Body,
-            Author, timestamp (in user readable format), and vote score
+            TODO should have a form to create new post or edit existing posts
           </li>
           <li>
-            TODO should list all of the comments for that post, ordered by
-            voteScore (highest first)
-          </li>
-          <li>
-            TODO should have a control for reordering comments by score or
-            timestamp
-          </li>
-          <li>TODO should have controls to edit or delete the post</li>
-          <li>TODO should have a control to add a new comment.</li>
-          <li>
-            TODO implement comment form however you want (inline, modal, etc.)
-          </li>
-          <li>
-            TODO comments should also have controls for editing or deleting
+            TODO when editing, existing data should be populated in the form
           </li>
         </ul>
+        <PostForm onSubmit={this.foobar} />
       </div>
     );
   }

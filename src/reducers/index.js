@@ -2,6 +2,8 @@
 //https://egghead.io/courses/building-react-applications-with-idiomatic-redux
 
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
+
 import dummy from './dummy';
 import categories from './categories';
 import posts from './posts';
@@ -12,6 +14,7 @@ const rootReducer = combineReducers({
   categories,
   posts,
   postSortOrder,
+  form: formReducer,
 });
 
 export default rootReducer;

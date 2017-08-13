@@ -12,7 +12,7 @@ class PostSortOrderChanger extends Component {
   };
 
   render() {
-    const { value, onChange } = this.props;
+    const { value } = this.props;
     return (
       <div className="book-shelf-changer">
         <select value={value} onChange={this.handleChange}>
