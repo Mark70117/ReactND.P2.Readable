@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { syncPosts } from '../actions';
 
-let PostForm = props => {
-  const { handleSubmit, pristine, submitting } = props;
+let PostFormAdd = props => {
+  const { categories, handleSubmit, pristine, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -38,6 +38,23 @@ let PostForm = props => {
         </div>
       </div>
       <div>
+        <label>Category</label>
+        <div>
+          {Object.values(categories).map(element =>
+            <label>
+              <Field
+                key={element.name}
+                name="category"
+                component="input"
+                type="radio"
+                value={element.name}
+              />{' '}
+              {element.name}
+            </label>
+          )}
+        </div>
+      </div>
+      <div>
         <button type="submit" disabled={pristine || submitting}>
           Submit
         </button>
@@ -46,20 +63,22 @@ let PostForm = props => {
   );
 };
 
-PostForm = reduxForm({
-  form: 'postForm', // a unique identifier for this form
-})(PostForm);
+// TOOO can alter submitting or some other prop to disabled until all have values?
+
+PostFormAdd = reduxForm({
+  form: 'postFormAdd', // a unique identifier for this form
+})(PostFormAdd);
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(
-    'PostForm mapStateToProps' +
-      JSON.stringify(state.posts['6000000000000000002'], null, 4)
-  );
-  return { initialValues: state.posts['6000000000000000002'] };
+  console.log('PostFormAdd mapStateToProps');
+  return {
+    categories: state.categories,
+    initialValues: {},
+  };
 };
 
 const mapDispatchToProps = dispatch => ({
   mergePosts: data => dispatch(syncPosts(data)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostForm);
+export default connect(mapStateToProps, mapDispatchToProps)(PostFormAdd);

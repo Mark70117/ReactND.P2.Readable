@@ -15,7 +15,8 @@ const Root = ({ store }) =>
         <Route exact path="/" component={App} />
         <Route path="/category" component={CategoryView} />
         <Route path="/postdetails/:postId" component={PostDetailView} />
-        <Route path="/postedit" component={PostCreateEditView} />
+        <Route exact path="/postedit" component={PostCreateEditView} />
+        <Route path="/postedit/:postId" component={PostCreateEditView} />
       </Switch>
     </BrowserRouter>
   </Provider>;

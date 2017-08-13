@@ -3,6 +3,7 @@ const api = 'http://192.168.0.201:5001'; // FIX  -- need to get from env
 const headers = {
   Accept: 'application/json',
   Authorization: '1018', // My birthday
+  'Content-Type': 'application/json',
 };
 
 // GET /categories
@@ -48,6 +49,19 @@ export const getPosts = () =>
 // body - String
 // owner - String
 // category: Any of the categories listed in categories.js. Feel free to extend this list as you desire.
+export const postPost = post => {
+  console.log('putPostsId post: ' + JSON.stringify(post, null, 4));
+  return fetch(`${api}/posts/`, {
+    headers,
+    method: 'POST',
+    body: JSON.stringify(post),
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log('putPostsId data: ' + JSON.stringify(data, null, 4));
+      return data;
+    });
+};
 
 // GET /posts/:id
 // USAGE:
@@ -74,13 +88,32 @@ export const getPostsId = id =>
 // PARAMS:
 // title - String
 // body - String
+export const putPostsId = post => {
+  const datain = {};
+  datain['timestamp'] = post.timestamp;
+  datain['title'] = post.title;
+  datain['body'] = post.body;
+
+  console.log('putPostsId post: ' + JSON.stringify(post, null, 4));
+  console.log('putPostsId formData: ' + JSON.stringify(datain, null, 4));
+  return fetch(`${api}/posts/${post.id}`, {
+    headers,
+    method: 'PUT',
+    body: JSON.stringify(datain),
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log('putPostsId data: ' + JSON.stringify(data, null, 4));
+      return data;
+    });
+};
 
 // DELETE /posts/:id
 // USAGE:
 // Sets the deleted flag for a post to 'true'.
 // Sets the parentDeleted flag for all child comments to 'true'.
 export const deletePostsId = id => {
-  console.log('deletePostId: ' + id);
+  console.log('deletePostsId: ' + id);
   fetch(`${api}/posts/${id}`, { headers, method: 'DELETE' }).then(data => {
     console.log('deletePostsId data: ' + JSON.stringify(data, null, 4));
     return data;

@@ -6,6 +6,7 @@ import PostSortOrderChangerContainer from './PostSortOrderChangerContainer';
 import { getPosts } from '../utils/api';
 import { getCategoryPosts } from '../utils/api';
 import { syncPosts } from '../actions';
+import { NavLink } from 'react-router-dom';
 
 const getAppropriatePost = (mergePosts, match) => {
   if (match && match.params && match.params.categoryStr) {
@@ -60,6 +61,7 @@ class PostListContainer extends React.Component {
 
     return (
       <div>
+        <NavLink to="/postedit">New Post</NavLink>
         <PostSortOrderChangerContainer />
         <PostList posts={posts} />
       </div>

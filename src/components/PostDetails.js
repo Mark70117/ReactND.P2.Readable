@@ -34,7 +34,7 @@ class PostDetails extends Component {
         <button className="icon-btn" onClick={this.handleDelete}>
           <FaTrash size={16} />
         </button>
-        <NavLink to="/postedit">Edit</NavLink>
+        <NavLink to={'/postedit/' + post.id}>Edit</NavLink>
         <ul>
           <li>
             Title:{post.title}

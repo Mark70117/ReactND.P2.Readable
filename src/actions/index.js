@@ -1,5 +1,7 @@
 export const SET_CATEGORIES = 'SET_CATEGORIES';
 export const SYNC_POSTS = 'SYNC_POSTS';
+export const EDIT_POST = 'EDIT_POST';
+export const ADD_POST = 'EDIT_POST';
 export const SET_POST_SORT_ORDER = 'SET_POST_SORT_ORDER';
 
 export function syncCategories({ categories }) {
@@ -19,6 +21,29 @@ export function syncPosts(posts) {
   return {
     type: SYNC_POSTS,
     posts,
+  };
+}
+
+export function editPost(post) {
+  console.log('editPost post :' + JSON.stringify(post, null, 4));
+
+  return {
+    type: EDIT_POST,
+    post: {
+      id: post.id,
+      timestamp: post.timestamp,
+      title: post.title,
+      body: post.body,
+    },
+  };
+}
+
+export function addPost(post) {
+  console.log('editPost post :' + JSON.stringify(post, null, 4));
+
+  return {
+    type: EDIT_POST,
+    post,
   };
 }
 
