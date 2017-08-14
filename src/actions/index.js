@@ -66,3 +66,12 @@ export function syncComments(comments) {
     comments,
   };
 }
+
+export function setCommentSortOrder(sortOrder) {
+  console.log('setCommentSortOrder sortOrder :' + sortOrder);
+
+  return {
+    type: SET_COMMENT_SORT_ORDER,
+    sortOrder,
+  };
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CommentList from './CommentList';
-import PostSortOrderChangerContainer from './PostSortOrderChangerContainer'; //FIX
+import CommentSortOrderChangerContainer from './CommentSortOrderChangerContainer'; //FIX
 import { getPostsIdComments } from '../utils/api';
 //import { getCategoryPosts } from '../utils/api';
 import { syncComments } from '../actions';
@@ -48,23 +48,25 @@ class CommentListContainer extends React.Component {
     );
     getAppropriateComment(postId, mergeComments);
   }
-  componentDidUpdate(prevProps) {
-    console.log(
-      'CommentListContainer componentDidUpdate ' +
-        JSON.stringify(prevProps, null, 4)
-    );
-    console.log(
-      'CommentListContainer componentDidUpdate ' +
-        JSON.stringify(this.props, null, 4)
-    );
-    if (
-      prevProps.match &&
-      this.props.match &&
-      prevProps.match.params.categoryStr !== this.props.match.params.categoryStr
-    ) {
-      //getAppropriatePost(this.props.mergePosts, this.props.match);
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   const { postId, mergeComments } = this.props;
+
+  //   console.log(
+  //     'CommentListContainer componentDidUpdate ' +
+  //       JSON.stringify(prevProps, null, 4)
+  //   );
+  //   console.log(
+  //     'CommentListContainer componentDidUpdate ' +
+  //       JSON.stringify(this.props, null, 4)
+  //   );
+  //   if (
+  //     prevProps.match &&
+  //     this.props.match &&
+  //     prevProps.match.params.categoryStr !== this.props.match.params.categoryStr
+  //   ) {
+  //     getAppropriateComment(postId, mergeComments);
+  //   }
+  // }
 
   handleUpVote = () => {};
   // handleUpVote = post => {
@@ -96,13 +98,14 @@ class CommentListContainer extends React.Component {
   render() {
     const { comments } = this.props;
     console.log(
-      'PostListContainer render posts:' + JSON.stringify(comments, null, 4)
+      'CommentListContainer render comments:' +
+        JSON.stringify(comments, null, 4)
     );
 
     return (
       <div>
         <NavLink to="/postedit">New Post</NavLink>
-        <PostSortOrderChangerContainer />
+        <CommentSortOrderChangerContainer />
         <CommentList
           comments={comments}
           onUpVote={this.handleUpVote}
