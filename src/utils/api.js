@@ -182,3 +182,10 @@ export const getCommentsId = id =>
 // DELETE /comments/:id
 // USAGE:
 // Sets a comment's deleted flag to 'true'
+export const deleteCommentsId = id => {
+  console.log('deleteCommentsId: ' + id);
+  fetch(`${api}/comments/${id}`, { headers, method: 'DELETE' }).then(data => {
+    console.log('deleteCommentsId data: ' + JSON.stringify(data, null, 4));
+    return data;
+  });
+};

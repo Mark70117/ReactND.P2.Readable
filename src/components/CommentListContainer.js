@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CommentList from './CommentList';
 import CommentSortOrderChangerContainer from './CommentSortOrderChangerContainer'; //FIX
-import { getPostsIdComments } from '../utils/api';
+import { getPostsIdComments, deleteCommentsId } from '../utils/api';
 //import { getCategoryPosts } from '../utils/api';
 import { syncComments } from '../actions';
 import { NavLink } from 'react-router-dom';
@@ -95,6 +95,14 @@ class CommentListContainer extends React.Component {
   //     mergePosts([post]);
   //   });
   // };
+  handleDelete = comment => {
+    const { mergeComments } = this.props;
+
+    console.log('CommentDetailsContainer handleDelete');
+
+    mergeComments([{ ...comment, deleted: true, timestamp: Date.now() }]);
+    deleteCommentsId(comment.id);
+  };
   render() {
     const { comments } = this.props;
     console.log(
@@ -110,6 +118,7 @@ class CommentListContainer extends React.Component {
           comments={comments}
           onUpVote={this.handleUpVote}
           onDownVote={this.handleDownVote}
+          onDelete={this.handleDelete}
         />
       </div>
     );
