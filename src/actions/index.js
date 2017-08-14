@@ -1,8 +1,10 @@
 export const SET_CATEGORIES = 'SET_CATEGORIES';
 export const SYNC_POSTS = 'SYNC_POSTS';
+export const SYNC_COMMENTS = 'SYNC_COMMENTS';
 export const EDIT_POST = 'EDIT_POST';
 export const ADD_POST = 'EDIT_POST';
 export const SET_POST_SORT_ORDER = 'SET_POST_SORT_ORDER';
+export const SET_COMMENT_SORT_ORDER = 'SET_COMMENT_SORT_ORDER';
 
 export function syncCategories({ categories }) {
   console.log(
@@ -53,5 +55,14 @@ export function setPostSortOrder(sortOrder) {
   return {
     type: SET_POST_SORT_ORDER,
     sortOrder,
+  };
+}
+
+export function syncComments(comments) {
+  console.log('syncComments comments :' + JSON.stringify(comments, null, 4));
+
+  return {
+    type: SYNC_COMMENTS,
+    comments,
   };
 }

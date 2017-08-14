@@ -141,7 +141,7 @@ export const getPostsIdComments = id =>
     .then(res => res.json())
     .then(data => {
       console.log('getPostsIdComments data:' + JSON.stringify(data, null, 4));
-      return { comments: data };
+      return data;
     });
 
 // POST /comments
@@ -164,7 +164,7 @@ export const getCommentsId = id =>
     .then(res => res.json())
     .then(data => {
       console.log('getCommentsId data:' + JSON.stringify(data, null, 4));
-      return { comment: data };
+      return data;
     });
 
 // POST /comments/:id

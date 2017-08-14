@@ -1,33 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import PostDetailsLink from './PostDetailsLink';
 import { dateFromEpochInt } from '../utils/date.js';
 import FaArrowUp from 'react-icons/lib/fa/arrow-up';
 import FaArrowDown from 'react-icons/lib/fa/arrow-down';
 
-class PostListItem extends Component {
+class CommentListItem extends Component {
   static propTypes = {
-    post: PropTypes.array.isRequired,
+    comment: PropTypes.array.isRequired,
     onUpVote: PropTypes.func.isRequired,
     onDownVote: PropTypes.func.isRequired,
   };
   handleUpVote = event => {
-    const { post, onUpVote } = this.props;
-    console.log('handleUpVote event' + JSON.stringify(post.id, null, 4));
-    onUpVote(post);
+    const { comment, onUpVote } = this.props;
+    console.log('handleUpVote event' + JSON.stringify(comment.id, null, 4));
+    onUpVote(comment);
   };
   handleDownVote = event => {
-    const { post, onDownVote } = this.props;
-    console.log('handleDownVote event' + JSON.stringify(post.id, null, 4));
-    onDownVote(post);
+    const { comment, onDownVote } = this.props;
+    console.log('handleDownVote event' + JSON.stringify(comment.id, null, 4));
+    onDownVote(comment);
   };
   render() {
-    const { post, onUpVote, onDownVote } = this.props;
+    const { comment, onUpVote, onDownVote } = this.props;
     return (
-      <li key={post.id}>
-        {post.voteScore},<PostDetailsLink postId={post.id}>
-          {post.title}
-        </PostDetailsLink>,{dateFromEpochInt(post.timestamp)},{' '}
+      <li key={comment.id}>
+        {comment.voteScore},
+        {comment.title},
+        {comment.body},
+        {comment.author}, ,{dateFromEpochInt(comment.timestamp)},{' '}
         <button className="icon-btn" onClick={this.handleUpVote}>
           <FaArrowUp size={16} />
         </button>
@@ -39,4 +39,4 @@ class PostListItem extends Component {
   }
 }
 
-export default PostListItem;
+export default CommentListItem;

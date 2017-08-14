@@ -5,6 +5,7 @@ import { dateFromEpochInt } from '../utils/date.js';
 import FaTrash from 'react-icons/lib/fa/trash';
 import FaArrowUp from 'react-icons/lib/fa/arrow-up';
 import FaArrowDown from 'react-icons/lib/fa/arrow-down';
+import CommentListContainer from './CommentListContainer';
 
 class PostDetails extends Component {
   static propTypes = {
@@ -70,6 +71,9 @@ class PostDetails extends Component {
             VoteScore: {post.voteScore}
           </li>
         </ul>
+        <hr />
+        <h2>Comments</h2>
+        <CommentListContainer postId={post.id} />
       </div>
     );
   }

@@ -8,6 +8,8 @@ import dummy from './dummy';
 import categories from './categories';
 import posts from './posts';
 import postSortOrder from './postSortOrder';
+import comments from './comments';
+import commentSortOrder from './commentSortOrder';
 
 const rootReducer = combineReducers({
   dummy,
@@ -15,6 +17,8 @@ const rootReducer = combineReducers({
   posts,
   postSortOrder,
   form: formReducer,
+  comments,
+  commentSortOrder,
 });
 
 export default rootReducer;
