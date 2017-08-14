@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { dateFromEpochInt } from '../utils/date.js';
 import FaTrash from 'react-icons/lib/fa/trash';
+import FaArrowUp from 'react-icons/lib/fa/arrow-up';
+import FaArrowDown from 'react-icons/lib/fa/arrow-down';
 
 class PostDetails extends Component {
   static propTypes = {
@@ -20,6 +22,16 @@ class PostDetails extends Component {
     console.log('handleDelete event' + JSON.stringify(post.id, null, 4));
     onDelete();
   };
+  handleUpvote = event => {
+    const { post, onUpvote } = this.props;
+    console.log('handleUpvote event' + JSON.stringify(post.id, null, 4));
+    onUpvote();
+  };
+  handleDownvote = event => {
+    const { post, onDownvote } = this.props;
+    console.log('handleDownvote event' + JSON.stringify(post.id, null, 4));
+    onDownvote();
+  };
   loadingPost() {
     return (
       <div className="post-details">
@@ -33,6 +45,12 @@ class PostDetails extends Component {
         <NavLink to="/">Home</NavLink>
         <button className="icon-btn" onClick={this.handleDelete}>
           <FaTrash size={16} />
+        </button>
+        <button className="icon-btn" onClick={this.handleUpvote}>
+          <FaArrowUp size={16} />
+        </button>
+        <button className="icon-btn" onClick={this.handleDownvote}>
+          <FaArrowDown size={16} />
         </button>
         <NavLink to={'/postedit/' + post.id}>Edit</NavLink>
         <ul>

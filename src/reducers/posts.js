@@ -2,12 +2,22 @@ import { SYNC_POSTS, EDIT_POST, ADD_POST } from '../actions';
 const initialState = [];
 
 const makeIdKeyZulu = (total, element) => {
+  //console.log('makeIdKeyZulu total' + JSON.stringify(total, null, 4));
+  //console.log('makeIdKeyZulu element' + JSON.stringify(element, null, 4));
+
   if (element.id) {
     const existingTimestamp = total[element.id]
       ? total[element.id].timestamp
       : -1;
+    const existingVoteScore = total[element.id]
+      ? total[element.id].voteScore
+      : 'NaN';
 
     if (element.timestamp > existingTimestamp) {
+      console.log('makeIdKeyZulu change state existingTimeStamp');
+      return { ...total, [element.id]: element };
+    } else if (element.voteScore !== existingVoteScore) {
+      console.log('makeIdKeyZulu change state existingVoteScore');
       return { ...total, [element.id]: element };
     } else {
       return total;

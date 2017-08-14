@@ -80,6 +80,19 @@ export const getPostsId = id =>
 
 // PARAMS:
 // option - String: Either "upVote" or "downVote"
+export const postPostsId = (postId, voteDirection) => {
+  console.log('postPostsId post: ' + JSON.stringify(postId, null, 4));
+  return fetch(`${api}/posts/${postId}`, {
+    headers,
+    method: 'POST',
+    body: JSON.stringify({ option: voteDirection }),
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log('postPostsId data: ' + JSON.stringify(data, null, 4));
+      return data;
+    });
+};
 
 // PUT /posts/:id
 // USAGE:
