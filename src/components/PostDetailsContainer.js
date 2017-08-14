@@ -33,10 +33,10 @@ class PostDetailsContainer extends Component {
     deletePostsId(post.id);
   };
 
-  onUpvote = () => {
+  onUpVote = () => {
     const { post, mergePosts } = this.props;
     console.log(
-      'PostDetailsContainer onUpvote' + JSON.stringify(post, null, 4)
+      'PostDetailsContainer onUpVote' + JSON.stringify(post, null, 4)
     );
     const currVoteScore = post.voteScore;
     mergePosts([{ ...post, voteScore: currVoteScore + 1 }]);
@@ -45,15 +45,15 @@ class PostDetailsContainer extends Component {
     });
   };
 
-  onDownvote = () => {
+  onDownVote = () => {
     const { post, mergePosts } = this.props;
     console.log(
-      'PostDetailsContainer onDownvote' + JSON.stringify(post, null, 4)
+      'PostDetailsContainer onDownVote' + JSON.stringify(post, null, 4)
     );
     const currVoteScore = post.voteScore;
-    console.log('onDownvote 1Y' + currVoteScore);
+    console.log('onDownVote 1Y' + currVoteScore);
     mergePosts([{ ...post, voteScore: currVoteScore - 1 }]);
-    console.log('onDownvote 2Y');
+    console.log('onDownVote 2Y');
 
     postPostsId(post.id, 'downVote').then(post => {
       mergePosts([post]);
@@ -68,8 +68,8 @@ class PostDetailsContainer extends Component {
         post={post}
         onEdit={this.onEdit}
         onDelete={this.onDelete}
-        onUpvote={this.onUpvote}
-        onDownvote={this.onDownvote}
+        onUpVote={this.onUpVote}
+        onDownVote={this.onDownVote}
       />
     );
   }

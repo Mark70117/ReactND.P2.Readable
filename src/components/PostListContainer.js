@@ -7,6 +7,7 @@ import { getPosts } from '../utils/api';
 import { getCategoryPosts } from '../utils/api';
 import { syncPosts } from '../actions';
 import { NavLink } from 'react-router-dom';
+import { postPostsId } from '../utils/api';
 
 const getAppropriatePost = (mergePosts, match) => {
   if (match && match.params && match.params.categoryStr) {
@@ -27,6 +28,7 @@ const getAppropriatePost = (mergePosts, match) => {
     });
   }
 };
+
 class PostListContainer extends React.Component {
   componentDidMount() {
     const { mergePosts, match } = this.props;
@@ -53,6 +55,30 @@ class PostListContainer extends React.Component {
       getAppropriatePost(this.props.mergePosts, this.props.match);
     }
   }
+  handleUpVote = post => {
+    const { mergePosts } = this.props;
+    console.log(
+      'PostListContainer handleUpVote event' + JSON.stringify(post, null, 4)
+    );
+
+    const currVoteScore = post.voteScore;
+    mergePosts([{ ...post, voteScore: currVoteScore + 1 }]);
+    postPostsId(post.id, 'upVote').then(post => {
+      mergePosts([post]);
+    });
+  };
+  handleDownVote = post => {
+    const { mergePosts } = this.props;
+    console.log(
+      'PostListContainer handleDownVote event' + JSON.stringify(post, null, 4)
+    );
+
+    const currVoteScore = post.voteScore;
+    mergePosts([{ ...post, voteScore: currVoteScore - 1 }]);
+    postPostsId(post.id, 'downVote').then(post => {
+      mergePosts([post]);
+    });
+  };
   render() {
     const { posts } = this.props;
     console.log(
@@ -63,7 +89,11 @@ class PostListContainer extends React.Component {
       <div>
         <NavLink to="/postedit">New Post</NavLink>
         <PostSortOrderChangerContainer />
-        <PostList posts={posts} />
+        <PostList
+          posts={posts}
+          onUpVote={this.handleUpVote}
+          onDownVote={this.handleDownVote}
+        />
       </div>
     );
   }

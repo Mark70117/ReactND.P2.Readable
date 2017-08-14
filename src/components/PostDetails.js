@@ -22,15 +22,15 @@ class PostDetails extends Component {
     console.log('handleDelete event' + JSON.stringify(post.id, null, 4));
     onDelete();
   };
-  handleUpvote = event => {
-    const { post, onUpvote } = this.props;
-    console.log('handleUpvote event' + JSON.stringify(post.id, null, 4));
-    onUpvote();
+  handleUpVote = event => {
+    const { post, onUpVote } = this.props;
+    console.log('handleUpVote event' + JSON.stringify(post.id, null, 4));
+    onUpVote();
   };
-  handleDownvote = event => {
-    const { post, onDownvote } = this.props;
-    console.log('handleDownvote event' + JSON.stringify(post.id, null, 4));
-    onDownvote();
+  handleDownVote = event => {
+    const { post, onDownVote } = this.props;
+    console.log('handleDownVote event' + JSON.stringify(post.id, null, 4));
+    onDownVote();
   };
   loadingPost() {
     return (
@@ -46,10 +46,10 @@ class PostDetails extends Component {
         <button className="icon-btn" onClick={this.handleDelete}>
           <FaTrash size={16} />
         </button>
-        <button className="icon-btn" onClick={this.handleUpvote}>
+        <button className="icon-btn" onClick={this.handleUpVote}>
           <FaArrowUp size={16} />
         </button>
-        <button className="icon-btn" onClick={this.handleDownvote}>
+        <button className="icon-btn" onClick={this.handleDownVote}>
           <FaArrowDown size={16} />
         </button>
         <NavLink to={'/postedit/' + post.id}>Edit</NavLink>
