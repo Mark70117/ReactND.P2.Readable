@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CommentList from './CommentList';
 import CommentSortOrderChangerContainer from './CommentSortOrderChangerContainer'; //FIX
-import { getPostsIdComments, deleteCommentsId } from '../utils/api';
+import {
+  getPostsIdComments,
+  deleteCommentsId,
+  postCommentsId,
+} from '../utils/api';
 //import { getCategoryPosts } from '../utils/api';
 import { syncComments } from '../actions';
 import { NavLink } from 'react-router-dom';
@@ -68,33 +72,31 @@ class CommentListContainer extends React.Component {
   //   }
   // }
 
-  handleUpVote = () => {};
-  // handleUpVote = post => {
-  //   const { mergePosts } = this.props;
-  //   console.log(
-  //     'PostListContainer handleUpVote event' + JSON.stringify(post, null, 4)
-  //   );
+  handleUpVote = comment => {
+    const { mergeComments } = this.props;
+    console.log(
+      'CommentDetailsContainer handleUpVote' + JSON.stringify(comment, null, 4)
+    );
+    const currVoteScore = comment.voteScore;
+    mergeComments([{ ...comment, voteScore: currVoteScore + 1 }]);
+    postCommentsId(comment.id, 'upVote').then(comment => {
+      mergeComments([comment]);
+    });
+  };
 
-  //   const currVoteScore = post.voteScore;
-  //   mergePosts([{ ...post, voteScore: currVoteScore + 1 }]);
-  //   postPostsId(post.id, 'upVote').then(post => {
-  //     mergePosts([post]);
-  //   });
-  // };
+  handleDownVote = comment => {
+    const { mergeComments } = this.props;
+    console.log(
+      'CommentDetailsContainer handleDownVote' +
+        JSON.stringify(comment, null, 4)
+    );
+    const currVoteScore = comment.voteScore;
+    mergeComments([{ ...comment, voteScore: currVoteScore - 1 }]);
+    postCommentsId(comment.id, 'downVote').then(comment => {
+      mergeComments([comment]);
+    });
+  };
 
-  handleDownVote = () => {};
-  // handleDownVote = post => {
-  //   const { mergePosts } = this.props;
-  //   console.log(
-  //     'PostListContainer handleDownVote event' + JSON.stringify(post, null, 4)
-  //   );
-
-  //   const currVoteScore = post.voteScore;
-  //   mergePosts([{ ...post, voteScore: currVoteScore - 1 }]);
-  //   postPostsId(post.id, 'downVote').then(post => {
-  //     mergePosts([post]);
-  //   });
-  // };
   handleDelete = comment => {
     const { mergeComments } = this.props;
 

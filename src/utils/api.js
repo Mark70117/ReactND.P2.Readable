@@ -169,7 +169,22 @@ export const getCommentsId = id =>
 
 // POST /comments/:id
 // USAGE:
-// Used for voting on a comment.
+// Used for voting on a comment
+export const postCommentsId = (commentId, voteDirection) => {
+  console.log(
+    'postCommentsId commentId: ' + JSON.stringify(commentId, null, 4)
+  );
+  return fetch(`${api}/comments/${commentId}`, {
+    headers,
+    method: 'POST',
+    body: JSON.stringify({ option: voteDirection }),
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log('postCommentsId data: ' + JSON.stringify(data, null, 4));
+      return data;
+    });
+};
 
 // PUT /comments/:id
 // USAGE:
