@@ -13,12 +13,10 @@ class PostListItem extends Component {
   };
   handleUpVote = event => {
     const { post, onUpVote } = this.props;
-    console.log('handleUpVote event' + JSON.stringify(post.id, null, 4));
     onUpVote(post);
   };
   handleDownVote = event => {
     const { post, onDownVote } = this.props;
-    console.log('handleDownVote event' + JSON.stringify(post.id, null, 4));
     onDownVote(post);
   };
   render() {

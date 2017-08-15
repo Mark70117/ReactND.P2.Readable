@@ -41,10 +41,6 @@ PostFormEdit = reduxForm({
 })(PostFormEdit);
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(
-    'PostFormEdit mapStateToProps ownProps: ' +
-      JSON.stringify(ownProps, null, 4)
-  );
   return {
     categories: state.categories,
     initialValues: state.posts[ownProps.postId],

@@ -11,9 +11,6 @@ const headers = {
 // Get all of the categories available for the app. List is found in categories.js. Feel free to extend this list as you desire.
 export const getCategories = () =>
   fetch(`${api}/categories`, { headers }).then(res => res.json()).then(data => {
-    console.log(
-      'getCategories data:' + JSON.stringify(data.categories, null, 4)
-    );
     return { categories: data.categories };
   });
 
@@ -24,7 +21,6 @@ export const getCategoryPosts = category =>
   fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
     .then(data => {
-      console.log('getCategoryPosts data:' + JSON.stringify(data, null, 4));
       return data;
     });
 
@@ -33,7 +29,6 @@ export const getCategoryPosts = category =>
 // Get all of the posts. Useful for the main page when no category is selected.
 export const getPosts = () =>
   fetch(`${api}/posts`, { headers }).then(res => res.json()).then(data => {
-    console.log('getPosts data:' + JSON.stringify(data, null, 4));
     return data;
   });
 
@@ -49,7 +44,6 @@ export const getPosts = () =>
 // owner - String
 // category: Any of the categories listed in categories.js. Feel free to extend this list as you desire.
 export const postPosts = post => {
-  console.log('putPosts post: ' + JSON.stringify(post, null, 4));
   return fetch(`${api}/posts/`, {
     headers,
     method: 'POST',
@@ -57,7 +51,6 @@ export const postPosts = post => {
   })
     .then(res => res.json())
     .then(data => {
-      console.log('putPostsId data: ' + JSON.stringify(data, null, 4));
       return data;
     });
 };
@@ -69,7 +62,6 @@ export const getPostsId = id =>
   fetch(`${api}/posts/${id}`, { headers })
     .then(res => res.json())
     .then(data => {
-      console.log('getPosts data:' + JSON.stringify(data, null, 4));
       return data;
     });
 
@@ -80,7 +72,6 @@ export const getPostsId = id =>
 // PARAMS:
 // option - String: Either "upVote" or "downVote"
 export const postPostsId = (postId, voteDirection) => {
-  console.log('postPostsId post: ' + JSON.stringify(postId, null, 4));
   return fetch(`${api}/posts/${postId}`, {
     headers,
     method: 'POST',
@@ -88,7 +79,6 @@ export const postPostsId = (postId, voteDirection) => {
   })
     .then(res => res.json())
     .then(data => {
-      console.log('postPostsId data: ' + JSON.stringify(data, null, 4));
       return data;
     });
 };
@@ -106,8 +96,6 @@ export const putPostsId = post => {
   datain['title'] = post.title;
   datain['body'] = post.body;
 
-  console.log('putPostsId post: ' + JSON.stringify(post, null, 4));
-  console.log('putPostsId datain: ' + JSON.stringify(datain, null, 4));
   return fetch(`${api}/posts/${post.id}`, {
     headers,
     method: 'PUT',
@@ -115,7 +103,6 @@ export const putPostsId = post => {
   })
     .then(res => res.json())
     .then(data => {
-      console.log('putPostsId data: ' + JSON.stringify(data, null, 4));
       return data;
     });
 };
@@ -125,9 +112,7 @@ export const putPostsId = post => {
 // Sets the deleted flag for a post to 'true'.
 // Sets the parentDeleted flag for all child comments to 'true'.
 export const deletePostsId = id => {
-  console.log('deletePostsId: ' + id);
   fetch(`${api}/posts/${id}`, { headers, method: 'DELETE' }).then(data => {
-    console.log('deletePostsId data: ' + JSON.stringify(data, null, 4));
     return data;
   });
 };
@@ -139,7 +124,6 @@ export const getPostsIdComments = id =>
   fetch(`${api}/posts/${id}/comments`, { headers })
     .then(res => res.json())
     .then(data => {
-      console.log('getPostsIdComments data:' + JSON.stringify(data, null, 4));
       return data;
     });
 
@@ -154,7 +138,6 @@ export const getPostsIdComments = id =>
 // owner: String
 // parentId: Should match a post id in the database.
 export const postComments = comment => {
-  console.log('postComments comment: ' + JSON.stringify(comment, null, 4));
   return fetch(`${api}/comments/`, {
     headers,
     method: 'POST',
@@ -162,7 +145,6 @@ export const postComments = comment => {
   })
     .then(res => res.json())
     .then(data => {
-      console.log('postComments data: ' + JSON.stringify(data, null, 4));
       return data;
     });
 };
@@ -174,7 +156,6 @@ export const getCommentsId = id =>
   fetch(`${api}/comments/${id}`, { headers })
     .then(res => res.json())
     .then(data => {
-      console.log('getCommentsId data:' + JSON.stringify(data, null, 4));
       return data;
     });
 
@@ -182,9 +163,6 @@ export const getCommentsId = id =>
 // USAGE:
 // Used for voting on a comment
 export const postCommentsId = (commentId, voteDirection) => {
-  console.log(
-    'postCommentsId commentId: ' + JSON.stringify(commentId, null, 4)
-  );
   return fetch(`${api}/comments/${commentId}`, {
     headers,
     method: 'POST',
@@ -192,7 +170,6 @@ export const postCommentsId = (commentId, voteDirection) => {
   })
     .then(res => res.json())
     .then(data => {
-      console.log('postCommentsId data: ' + JSON.stringify(data, null, 4));
       return data;
     });
 };
@@ -209,8 +186,6 @@ export const putCommentsId = comment => {
   datain['timestamp'] = comment.timestamp;
   datain['body'] = comment.body;
 
-  console.log('putCommentsId post: ' + JSON.stringify(comment, null, 4));
-  console.log('putCommentsId datain: ' + JSON.stringify(datain, null, 4));
   return fetch(`${api}/comments/${comment.id}`, {
     headers,
     method: 'PUT',
@@ -218,7 +193,6 @@ export const putCommentsId = comment => {
   })
     .then(res => res.json())
     .then(data => {
-      console.log('putCommentsId data: ' + JSON.stringify(data, null, 4));
       return data;
     });
 };
@@ -227,9 +201,7 @@ export const putCommentsId = comment => {
 // USAGE:
 // Sets a comment's deleted flag to 'true'
 export const deleteCommentsId = id => {
-  console.log('deleteCommentsId: ' + id);
   fetch(`${api}/comments/${id}`, { headers, method: 'DELETE' }).then(data => {
-    console.log('deleteCommentsId data: ' + JSON.stringify(data, null, 4));
     return data;
   });
 };

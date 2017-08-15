@@ -4,12 +4,8 @@ import { sync } from '../utils/shared';
 const initialState = {};
 
 export default function comments(state = initialState, action) {
-  console.log('cc ' + action.type);
   switch (action.type) {
     case SYNC_COMMENTS:
-      console.log(
-        'cc comments SYNC_COMMENTS :' + JSON.stringify(action.comments, null, 4)
-      );
       return sync(state, action.comments);
     // case ADD_POST:
     //   console.log(
