@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import PostSortOrderChanger from './PostSortOrderChanger';
+import SortOrderChanger from './SortOrderChanger';
 import { setPostSortOrder } from '../actions';
 
 class PostSortOrderChangerContainer extends Component {
@@ -13,9 +13,7 @@ class PostSortOrderChangerContainer extends Component {
   render() {
     const { value, changePostSortOrder } = this.props;
 
-    return (
-      <PostSortOrderChanger value={value} onChange={changePostSortOrder} />
-    );
+    return <SortOrderChanger value={value} onChange={changePostSortOrder} />;
   }
 }
 

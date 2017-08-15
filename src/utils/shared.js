@@ -40,3 +40,28 @@ export const sync = (prevPostDict, postArr) => {
   const postDict = postArr.reduce(makeIdKey, prevPostDict);
   return postDict;
 };
+
+export const sortVoteAscending = (a, b) => a.voteScore > b.voteScore;
+export const sortVoteDecending = (a, b) => a.voteScore < b.voteScore;
+export const sortTimestampAscending = (a, b) => a.timestamp > b.timestamp;
+export const sortTimeStampDecending = (a, b) => a.timestamp < b.timestamp;
+
+export const sortOrderStringToFunc = sortOrderStr => {
+  switch (sortOrderStr) {
+    case 'sortVoteAscending':
+      return sortVoteAscending;
+    case 'sortVoteDecending':
+      return sortVoteDecending;
+    case 'sortTimestampAscending':
+      return sortTimestampAscending;
+    case 'sortTimeStampDecending':
+      return sortTimeStampDecending;
+    default:
+      return sortVoteAscending;
+  }
+};
+
+export const sortOrderInitialState = {
+  str: 'sortVoteDecending',
+  func: sortVoteDecending,
+};

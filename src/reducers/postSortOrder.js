@@ -1,31 +1,14 @@
 import { SET_POST_SORT_ORDER } from '../actions';
+import {
+  sortVoteAscending,
+  sortVoteDecending,
+  sortTimestampAscending,
+  sortTimeStampDecending,
+  sortOrderInitialState,
+  sortOrderStringToFunc,
+} from '../utils/shared';
 
-const postSortVoteAscending = (a, b) => a.voteScore > b.voteScore;
-const postSortVoteDecending = (a, b) => a.voteScore < b.voteScore;
-const postSortTimestampAscending = (a, b) => a.timestamp > b.timestamp;
-const postSortTimeStampDecending = (a, b) => a.timestamp < b.timestamp;
-
-const initialState = {
-  str: 'postSortVoteDecending',
-  func: postSortVoteDecending,
-};
-
-const stringToFunc = sortOrderStr => {
-  switch (sortOrderStr) {
-    case 'postSortVoteAscending':
-      return postSortVoteAscending;
-    case 'postSortVoteDecending':
-      return postSortVoteDecending;
-    case 'postSortTimestampAscending':
-      return postSortTimestampAscending;
-    case 'postSortTimeStampDecending':
-      return postSortTimeStampDecending;
-    default:
-      return postSortVoteAscending;
-  }
-};
-
-export default function categories(state = initialState, action) {
+export default function postSortOrder(state = sortOrderInitialState, action) {
   console.log('pso ' + action.type);
   console.log('pso ' + action.sortOrder);
   console.log('pso postSortOrder :' + action.sortOrder);
@@ -33,7 +16,10 @@ export default function categories(state = initialState, action) {
 
   switch (action.type) {
     case SET_POST_SORT_ORDER:
-      return { str: action.sortOrder, func: stringToFunc(action.sortOrder) };
+      return {
+        str: action.sortOrder,
+        func: sortOrderStringToFunc(action.sortOrder),
+      };
     default:
       return state;
   }

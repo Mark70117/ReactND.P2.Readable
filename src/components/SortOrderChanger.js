@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class PostSortOrderChanger extends Component {
+class CommentSortOrderChanger extends Component {
   static propTypes = {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -16,18 +16,14 @@ class PostSortOrderChanger extends Component {
     return (
       <div className="book-shelf-changer">
         <select value={value} onChange={this.handleChange}>
-          <option value="postSortVoteAscending">Votes (ascending)</option>
-          <option value="postSortVoteDecending">Votes (descending)</option>
-          <option value="postSortTimestampAscending">
-            Timestamp (ascending)
-          </option>
-          <option value="postSortTimeStampDecending">
-            TimeStamp (descending)
-          </option>
+          <option value="sortVoteAscending">Votes (ascending)</option>
+          <option value="sortVoteDecending">Votes (descending)</option>
+          <option value="sortTimestampAscending">Timestamp (ascending)</option>
+          <option value="sortTimeStampDecending">TimeStamp (descending)</option>
         </select>
       </div>
     );
   }
 }
 
-export default PostSortOrderChanger;
+export default CommentSortOrderChanger;
