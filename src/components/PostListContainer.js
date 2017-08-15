@@ -122,7 +122,9 @@ const mapStateToProps = (state, ownProps) => {
       .filter(post => !post.deleted)
       .filter(post => categoryStr === '' || post.category === categoryStr)
       .sort(state.postSortOrder.func),
-    comments: Object.values(state.comments), // REFACTOR filter  comment => comment.parentId in posts
+    comments: Object.values(state.comments)
+      .filter(comment => !comment.deleted)
+      .filter(comment => !comment.parentDeleted), // REFACTOR ??? filter  comment => comment.parentId in posts
   };
 };
 
