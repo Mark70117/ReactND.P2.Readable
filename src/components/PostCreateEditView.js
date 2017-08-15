@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import uuid from 'js-uuid';
 import PostFormEdit from './PostFormEdit';
 import PostFormAdd from './PostFormAdd';
-import { putPostsId, postPost } from '../utils/api';
+import { putPostsId, postPosts } from '../utils/api';
 import { syncPosts, editPost, addPost } from '../actions';
 import { getCategories } from '../utils/api';
 import { syncCategories } from '../actions';
@@ -37,7 +37,7 @@ class PostCreateEditView extends React.Component {
     };
     console.log('PostCreateEditView add post' + JSON.stringify(post, null, 4));
     addPost(post);
-    postPost(post).then(resultPost => {
+    postPosts(post).then(resultPost => {
       console.log(
         'PostCreateEditView add resultPost' +
           JSON.stringify(resultPost, null, 4)

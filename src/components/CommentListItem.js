@@ -4,6 +4,7 @@ import { dateFromEpochInt } from '../utils/date.js';
 import FaArrowUp from 'react-icons/lib/fa/arrow-up';
 import FaArrowDown from 'react-icons/lib/fa/arrow-down';
 import FaTrash from 'react-icons/lib/fa/trash';
+import { NavLink } from 'react-router-dom';
 
 class CommentListItem extends Component {
   static propTypes = {
@@ -51,6 +52,9 @@ class CommentListItem extends Component {
         <button className="icon-btn" onClick={this.handleDownVote}>
           <FaArrowDown size={16} />
         </button>
+        <NavLink to={'/commentedit/' + comment.parentId + '/' + comment.id}>
+          Edit
+        </NavLink>
       </li>
     );
   }

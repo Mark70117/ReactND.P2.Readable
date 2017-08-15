@@ -7,6 +7,7 @@ import App from './App';
 import CategoryView from './CategoryView';
 import PostDetailView from './PostDetailView';
 import PostCreateEditView from './PostCreateEditView';
+import CommentCreateEditView from './CommentCreateEditView';
 
 const Root = ({ store }) =>
   <Provider store={store}>
@@ -17,6 +18,11 @@ const Root = ({ store }) =>
         <Route path="/postdetails/:postId" component={PostDetailView} />
         <Route exact path="/postedit" component={PostCreateEditView} />
         <Route path="/postedit/:postId" component={PostCreateEditView} />
+        <Route path="/commentedit/:postId" component={CommentCreateEditView} />
+        <Route
+          path="/commentedit/:postId/:commentId"
+          component={CommentCreateEditView}
+        />
       </Switch>
     </BrowserRouter>
   </Provider>;

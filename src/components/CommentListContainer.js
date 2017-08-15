@@ -106,7 +106,7 @@ class CommentListContainer extends React.Component {
     deleteCommentsId(comment.id);
   };
   render() {
-    const { comments } = this.props;
+    const { postId, comments } = this.props;
     console.log(
       'CommentListContainer render comments:' +
         JSON.stringify(comments, null, 4)
@@ -114,7 +114,7 @@ class CommentListContainer extends React.Component {
 
     return (
       <div>
-        <NavLink to="/postedit">New Post</NavLink>
+        <NavLink to={'/commentedit/' + postId}>New Comment</NavLink>
         <CommentSortOrderChangerContainer />
         <CommentList
           comments={comments}

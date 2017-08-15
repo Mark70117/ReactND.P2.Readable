@@ -49,8 +49,8 @@ export const getPosts = () =>
 // body - String
 // owner - String
 // category: Any of the categories listed in categories.js. Feel free to extend this list as you desire.
-export const postPost = post => {
-  console.log('putPostsId post: ' + JSON.stringify(post, null, 4));
+export const postPosts = post => {
+  console.log('putPosts post: ' + JSON.stringify(post, null, 4));
   return fetch(`${api}/posts/`, {
     headers,
     method: 'POST',
@@ -108,7 +108,7 @@ export const putPostsId = post => {
   datain['body'] = post.body;
 
   console.log('putPostsId post: ' + JSON.stringify(post, null, 4));
-  console.log('putPostsId formData: ' + JSON.stringify(datain, null, 4));
+  console.log('putPostsId datain: ' + JSON.stringify(datain, null, 4));
   return fetch(`${api}/posts/${post.id}`, {
     headers,
     method: 'PUT',
@@ -154,6 +154,19 @@ export const getPostsIdComments = id =>
 // body: String
 // owner: String
 // parentId: Should match a post id in the database.
+export const postComments = comment => {
+  console.log('postComments comment: ' + JSON.stringify(comment, null, 4));
+  return fetch(`${api}/comments/`, {
+    headers,
+    method: 'POST',
+    body: JSON.stringify(comment),
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log('postComments data: ' + JSON.stringify(data, null, 4));
+      return data;
+    });
+};
 
 // GET /comments/:id
 // USAGE:
@@ -193,6 +206,24 @@ export const postCommentsId = (commentId, voteDirection) => {
 // PARAMS:
 // timestamp: timestamp. Get this however you want.
 // body: String
+export const putCommentsId = comment => {
+  const datain = {};
+  datain['timestamp'] = comment.timestamp;
+  datain['body'] = comment.body;
+
+  console.log('putCommentsId post: ' + JSON.stringify(comment, null, 4));
+  console.log('putCommentsId datain: ' + JSON.stringify(datain, null, 4));
+  return fetch(`${api}/comments/${comment.id}`, {
+    headers,
+    method: 'PUT',
+    body: JSON.stringify(datain),
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log('putCommentsId data: ' + JSON.stringify(data, null, 4));
+      return data;
+    });
+};
 
 // DELETE /comments/:id
 // USAGE:
