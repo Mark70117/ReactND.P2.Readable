@@ -1,11 +1,12 @@
 import { SYNC_POSTS, EDIT_POST, ADD_POST } from '../actions';
-const initialState = [];
+const initialState = {};
 
 const makeIdKeyZulu = (total, element) => {
   //console.log('makeIdKeyZulu total' + JSON.stringify(total, null, 4));
   //console.log('makeIdKeyZulu element' + JSON.stringify(element, null, 4));
 
   if (element.id) {
+    // REFACTOR  util function
     const existingTimestamp = total[element.id]
       ? total[element.id].timestamp
       : -1;
@@ -28,6 +29,7 @@ const makeIdKeyZulu = (total, element) => {
 };
 
 const sync = (prevPostDict, postArr) => {
+  // REFACTOR util function
   const postDict = postArr.reduce(makeIdKeyZulu, prevPostDict);
   return postDict;
 };

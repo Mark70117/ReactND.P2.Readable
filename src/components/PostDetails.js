@@ -44,14 +44,16 @@ class PostDetails extends Component {
     return (
       <div className="post-details">
         <NavLink to="/">Home</NavLink>
-        <button className="icon-btn" onClick={this.handleDelete}>
-          <FaTrash size={16} />
-        </button>
+        <br />
+        [Votes: {post.voteScore}]
         <button className="icon-btn" onClick={this.handleUpVote}>
-          <FaArrowUp size={16} />
+          <FaArrowUp size={10} />
         </button>
         <button className="icon-btn" onClick={this.handleDownVote}>
-          <FaArrowDown size={16} />
+          <FaArrowDown size={10} />
+        </button>
+        <button className="icon-btn" onClick={this.handleDelete}>
+          <FaTrash size={10} />
         </button>
         <NavLink to={'/postedit/' + post.id}>Edit</NavLink>
         <ul>
@@ -65,14 +67,13 @@ class PostDetails extends Component {
             Author: {post.author}
           </li>
           <li>
-            Timestamp: {dateFromEpochInt(post.timestamp)}
+            Category: {post.category}
           </li>
           <li>
-            VoteScore: {post.voteScore}
+            Timestamp: {dateFromEpochInt(post.timestamp)}
           </li>
         </ul>
         <hr />
-        <h2>Comments</h2>
         <CommentListContainer postId={post.id} />
       </div>
     );

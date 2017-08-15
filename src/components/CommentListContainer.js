@@ -12,35 +12,7 @@ import {
 import { syncComments } from '../actions';
 import { NavLink } from 'react-router-dom';
 //import { postPostsId } from '../utils/api';
-
-// const getAppropriatePost = (mergePosts, match) => {
-//   if (match && match.params && match.params.categoryStr) {
-//     getCategoryPosts(match.params.categoryStr).then(posts => {
-//       console.log(
-//         'PostListContainer componentDidMount posts :' +
-//           JSON.stringify(posts, null, 4)
-//       );
-//       mergePosts(posts);
-//     });
-//   } else {
-//     getPosts().then(posts => {
-//       console.log(
-//         'PostListContainer componentDidMount posts :' +
-//           JSON.stringify(posts, null, 4)
-//       );
-//       mergePosts(posts);
-//     });
-//   }
-// };
-const getAppropriateComment = (postId, mergeComments) => {
-  getPostsIdComments(postId).then(comments => {
-    console.log(
-      'CommentListContainer componentDidMount comments :' +
-        JSON.stringify(comments, null, 4)
-    );
-    mergeComments(comments);
-  });
-};
+import { getAppropriateComment } from '../utils/shared';
 
 class CommentListContainer extends React.Component {
   componentDidMount() {
@@ -52,25 +24,6 @@ class CommentListContainer extends React.Component {
     );
     getAppropriateComment(postId, mergeComments);
   }
-  // componentDidUpdate(prevProps) {
-  //   const { postId, mergeComments } = this.props;
-
-  //   console.log(
-  //     'CommentListContainer componentDidUpdate ' +
-  //       JSON.stringify(prevProps, null, 4)
-  //   );
-  //   console.log(
-  //     'CommentListContainer componentDidUpdate ' +
-  //       JSON.stringify(this.props, null, 4)
-  //   );
-  //   if (
-  //     prevProps.match &&
-  //     this.props.match &&
-  //     prevProps.match.params.categoryStr !== this.props.match.params.categoryStr
-  //   ) {
-  //     getAppropriateComment(postId, mergeComments);
-  //   }
-  // }
 
   handleUpVote = comment => {
     const { mergeComments } = this.props;
@@ -114,6 +67,10 @@ class CommentListContainer extends React.Component {
 
     return (
       <div>
+        <h2>
+          Comments (n={comments.length})
+        </h2>
+
         <NavLink to={'/commentedit/' + postId}>New Comment</NavLink>
         <CommentSortOrderChangerContainer />
         <CommentList

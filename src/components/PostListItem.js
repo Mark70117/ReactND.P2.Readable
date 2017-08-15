@@ -22,18 +22,20 @@ class PostListItem extends Component {
     onDownVote(post);
   };
   render() {
-    const { post, onUpVote, onDownVote } = this.props;
+    const { post, commentCount, onUpVote, onDownVote } = this.props;
     return (
       <li key={post.id}>
-        {post.voteScore},<PostDetailsLink postId={post.id}>
-          {post.title}
-        </PostDetailsLink>,{dateFromEpochInt(post.timestamp)},{' '}
+        <PostDetailsLink postId={post.id}>{post.title}</PostDetailsLink>
+        <br />
+        [votes:{post.voteScore}]
         <button className="icon-btn" onClick={this.handleUpVote}>
-          <FaArrowUp size={16} />
+          <FaArrowUp size={10} />
         </button>
         <button className="icon-btn" onClick={this.handleDownVote}>
-          <FaArrowDown size={16} />
+          <FaArrowDown size={10} />
         </button>
+        , [#Comments: {commentCount}],
+        {dateFromEpochInt(post.timestamp)}
       </li>
     );
   }

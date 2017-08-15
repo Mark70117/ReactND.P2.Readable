@@ -5,38 +5,38 @@ import PostList from './PostList';
 import PostSortOrderChangerContainer from './PostSortOrderChangerContainer';
 import { getPosts } from '../utils/api';
 import { getCategoryPosts } from '../utils/api';
-import { syncPosts } from '../actions';
+import { syncPosts, syncComments } from '../actions';
 import { NavLink } from 'react-router-dom';
 import { postPostsId } from '../utils/api';
+import { getAppropriateComment } from '../utils/shared';
 
-const getAppropriatePost = (mergePosts, match) => {
+const getAppropriatePost = (mergePosts, mergeComments, match) => {
+  let postGetter;
   if (match && match.params && match.params.categoryStr) {
-    getCategoryPosts(match.params.categoryStr).then(posts => {
-      console.log(
-        'PostListContainer componentDidMount posts :' +
-          JSON.stringify(posts, null, 4)
-      );
-      mergePosts(posts);
-    });
+    postGetter = getCategoryPosts(match.params.categoryStr);
   } else {
-    getPosts().then(posts => {
-      console.log(
-        'PostListContainer componentDidMount posts :' +
-          JSON.stringify(posts, null, 4)
-      );
-      mergePosts(posts);
-    });
+    postGetter = getPosts();
   }
+  postGetter.then(posts => {
+    console.log(
+      'PostListContainer componentDidMount posts :' +
+        JSON.stringify(posts, null, 4)
+    );
+    mergePosts(posts);
+    posts
+      .filter(post => !post.deleted)
+      .map(post => getAppropriateComment(post.id, mergeComments));
+  });
 };
 
 class PostListContainer extends React.Component {
   componentDidMount() {
-    const { mergePosts, match } = this.props;
+    const { mergePosts, mergeComments, match } = this.props;
 
     console.log(
       'PostListContainer componentDidMount ' + JSON.stringify(match, null, 4)
     );
-    getAppropriatePost(mergePosts, match);
+    getAppropriatePost(mergePosts, mergeComments, match);
   }
   componentDidUpdate(prevProps) {
     console.log(
@@ -52,7 +52,11 @@ class PostListContainer extends React.Component {
       this.props.match &&
       prevProps.match.params.categoryStr !== this.props.match.params.categoryStr
     ) {
-      getAppropriatePost(this.props.mergePosts, this.props.match);
+      getAppropriatePost(
+        this.props.mergePosts,
+        this.props.mergeComments,
+        this.props.match
+      ); //REFACTOR  this.props be gone
     }
   }
   handleUpVote = post => {
@@ -80,7 +84,7 @@ class PostListContainer extends React.Component {
     });
   };
   render() {
-    const { posts } = this.props;
+    const { posts, comments } = this.props;
     console.log(
       'PostListContainer render posts:' + JSON.stringify(posts, null, 4)
     );
@@ -91,6 +95,7 @@ class PostListContainer extends React.Component {
         <PostSortOrderChangerContainer />
         <PostList
           posts={posts}
+          comments={comments}
           onUpVote={this.handleUpVote}
           onDownVote={this.handleDownVote}
         />
@@ -117,11 +122,13 @@ const mapStateToProps = (state, ownProps) => {
       .filter(post => !post.deleted)
       .filter(post => categoryStr === '' || post.category === categoryStr)
       .sort(state.postSortOrder.func), // when all the sorting and deleting going to happen TODO
+    comments: Object.values(state.comments), // REFACTOR filter  comment => comment.parentId in posts
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   mergePosts: data => dispatch(syncPosts(data)),
+  mergeComments: data => dispatch(syncComments(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostListContainer);

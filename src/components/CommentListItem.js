@@ -39,18 +39,19 @@ class CommentListItem extends Component {
     const { comment, onUpVote, onDownVote } = this.props;
     return (
       <li key={comment.id}>
-        {comment.voteScore},
-        {comment.title},
-        {comment.body},
-        {comment.author}, ,{dateFromEpochInt(comment.timestamp)},{' '}
-        <button className="icon-btn" onClick={this.handleDelete}>
-          <FaTrash size={16} />
-        </button>
+        {comment.body}
+        --{comment.author}
+        <br />
+        [votes: {comment.voteScore}]
         <button className="icon-btn" onClick={this.handleUpVote}>
-          <FaArrowUp size={16} />
+          <FaArrowUp size={10} />
         </button>
         <button className="icon-btn" onClick={this.handleDownVote}>
-          <FaArrowDown size={16} />
+          <FaArrowDown size={10} />
+        </button>,
+        {dateFromEpochInt(comment.timestamp)}
+        <button className="icon-btn" onClick={this.handleDelete}>
+          <FaTrash size={10} />
         </button>
         <NavLink to={'/commentedit/' + comment.parentId + '/' + comment.id}>
           Edit
