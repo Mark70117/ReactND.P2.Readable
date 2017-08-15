@@ -41,9 +41,8 @@ let PostFormAdd = props => {
         <label>Category</label>
         <div>
           {Object.values(categories).map(element =>
-            <label>
+            <label key={element.name}>
               <Field
-                key={element.name}
                 name="category"
                 component="input"
                 type="radio"

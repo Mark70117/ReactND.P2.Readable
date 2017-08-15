@@ -17,7 +17,7 @@ const CommentList = ({ comments, onUpVote, onDownVote, onDelete }) =>
   </ol>;
 
 CommentList.propTypes = {
-  comment: PropTypes.array.isRequired,
+  comment: PropTypes.array,
   onUpVote: PropTypes.func.isRequired,
   onDownVote: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
