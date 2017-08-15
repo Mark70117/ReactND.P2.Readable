@@ -1,5 +1,4 @@
 //http://redux-form.com/7.0.3/examples/initializeFromState/
-// TODO http://redux-form.com/7.0.3/examples/syncValidation/
 
 import React from 'react';
 import { connect } from 'react-redux';
@@ -31,10 +30,6 @@ CommentFormEdit = reduxForm({
 })(CommentFormEdit);
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(
-    'CommentFormEdit mapStateToProps ownProps: ' +
-      JSON.stringify(ownProps, null, 4)
-  );
   return {
     initialValues: state.comments[ownProps.commentId],
   };

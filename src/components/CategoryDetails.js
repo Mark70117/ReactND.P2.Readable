@@ -7,12 +7,9 @@ import CategoryNavContainer from './CategoryNavContainer';
 import PostListContainer from './PostListContainer';
 
 class CategoryDetails extends React.Component {
-  componentDidMount() {
-    console.log('CategoryDetails componentDidMount');
-  }
+  componentDidMount() {}
   render() {
     const { dummy, match } = this.props;
-    console.log('CategoryDetails' + JSON.stringify(match, null, 4));
 
     return (
       <div>

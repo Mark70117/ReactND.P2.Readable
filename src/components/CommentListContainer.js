@@ -109,7 +109,7 @@ const mapStateToProps = (state, ownProps) => {
       .filter(comment => comment.parentId === ownProps.postId)
       .filter(comment => !comment.deleted)
       .filter(comment => !comment.parentDeleted)
-      .sort(state.commentSortOrder.func), // when all the sorting and deleting going to happen TODO
+      .sort(state.commentSortOrder.func),
   };
 };
 

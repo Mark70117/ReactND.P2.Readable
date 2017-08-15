@@ -13,7 +13,6 @@ class CommentCreateEditView extends React.Component {
   componentDidMount() {
     console.log('CommentCreateEditView componentDidMount');
   }
-  //TODO ?move getCategories to root?
 
   add = values => {
     const { mergeComments, history, commentId } = this.props;

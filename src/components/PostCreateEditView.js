@@ -20,7 +20,6 @@ class PostCreateEditView extends React.Component {
       });
     }
   }
-  //TODO ?move getCategories to root?
 
   add = values => {
     const { mergePosts, history, postId } = this.props;

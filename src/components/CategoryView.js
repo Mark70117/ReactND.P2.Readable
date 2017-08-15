@@ -5,9 +5,6 @@ import { Route, Switch } from 'react-router-dom';
 import CategoryDetails from './CategoryDetails';
 
 class CategoryView extends React.Component {
-  componentDidMount() {
-    console.log('CategoryView componentDidMount');
-  }
   render() {
     const { dummy } = this.props;
 

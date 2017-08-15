@@ -15,24 +15,17 @@ class CommentListItem extends Component {
   };
   handleUpVote = event => {
     const { comment, onUpVote } = this.props;
-    console.log(
-      'CommentListItem handleUpVote event' + JSON.stringify(comment.id, null, 4)
-    );
+
     onUpVote(comment);
   };
   handleDownVote = event => {
     const { comment, onDownVote } = this.props;
-    console.log(
-      'CommentListItem handleDownVote event' +
-        JSON.stringify(comment.id, null, 4)
-    );
+
     onDownVote(comment);
   };
   handleDelete = event => {
     const { comment, onDelete } = this.props;
-    console.log(
-      'CommentListItem handleDelete event' + JSON.stringify(comment.id, null, 4)
-    );
+
     onDelete(comment);
   };
   render() {
