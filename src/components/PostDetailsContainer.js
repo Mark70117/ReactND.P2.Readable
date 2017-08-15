@@ -14,7 +14,6 @@ class PostDetailsContainer extends Component {
     mergePosts: PropTypes.func.isRequired,
   };
   componentDidMount() {
-    console.log('PostDetailsContainer componentDidMount ');
     const { postId, mergePosts } = this.props;
     getPostsId(postId).then(post => {
       mergePosts([post]);
@@ -24,17 +23,13 @@ class PostDetailsContainer extends Component {
   onDelete = () => {
     const { post, mergePosts } = this.props;
 
-    console.log('PostDetailsContainer onDelete');
-
     mergePosts([{ ...post, deleted: true, timestamp: Date.now() }]);
     deletePostsId(post.id);
   };
 
   onUpVote = () => {
     const { post, mergePosts } = this.props;
-    console.log(
-      'PostDetailsContainer onUpVote' + JSON.stringify(post, null, 4)
-    );
+
     const currVoteScore = post.voteScore;
     mergePosts([{ ...post, voteScore: currVoteScore + 1 }]);
     postPostsId(post.id, 'upVote').then(post => {
@@ -44,13 +39,9 @@ class PostDetailsContainer extends Component {
 
   onDownVote = () => {
     const { post, mergePosts } = this.props;
-    console.log(
-      'PostDetailsContainer onDownVote' + JSON.stringify(post, null, 4)
-    );
+
     const currVoteScore = post.voteScore;
-    console.log('onDownVote 1Y' + currVoteScore);
     mergePosts([{ ...post, voteScore: currVoteScore - 1 }]);
-    console.log('onDownVote 2Y');
 
     postPostsId(post.id, 'downVote').then(post => {
       mergePosts([post]);
@@ -72,10 +63,6 @@ class PostDetailsContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(
-    'PostDetailsContainer ownProps' + JSON.stringify(ownProps, null, 4)
-  );
-
   return {
     post: state.posts[ownProps.postId],
   };

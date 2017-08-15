@@ -18,10 +18,6 @@ const getAppropriatePost = (mergePosts, mergeComments, match) => {
     postGetter = getPosts();
   }
   postGetter.then(posts => {
-    console.log(
-      'PostListContainer componentDidMount posts :' +
-        JSON.stringify(posts, null, 4)
-    );
     mergePosts(posts);
     posts
       .filter(post => !post.deleted)
@@ -33,20 +29,9 @@ class PostListContainer extends React.Component {
   componentDidMount() {
     const { mergePosts, mergeComments, match } = this.props;
 
-    console.log(
-      'PostListContainer componentDidMount ' + JSON.stringify(match, null, 4)
-    );
     getAppropriatePost(mergePosts, mergeComments, match);
   }
   componentDidUpdate(prevProps) {
-    console.log(
-      'PostListContainer componentDidUpdate ' +
-        JSON.stringify(prevProps, null, 4)
-    );
-    console.log(
-      'PostListContainer componentDidUpdate ' +
-        JSON.stringify(this.props, null, 4)
-    );
     if (
       prevProps.match &&
       this.props.match &&
@@ -61,9 +46,6 @@ class PostListContainer extends React.Component {
   }
   handleUpVote = post => {
     const { mergePosts } = this.props;
-    console.log(
-      'PostListContainer handleUpVote event' + JSON.stringify(post, null, 4)
-    );
 
     const currVoteScore = post.voteScore;
     mergePosts([{ ...post, voteScore: currVoteScore + 1 }]);
@@ -73,9 +55,6 @@ class PostListContainer extends React.Component {
   };
   handleDownVote = post => {
     const { mergePosts } = this.props;
-    console.log(
-      'PostListContainer handleDownVote event' + JSON.stringify(post, null, 4)
-    );
 
     const currVoteScore = post.voteScore;
     mergePosts([{ ...post, voteScore: currVoteScore - 1 }]);
@@ -85,9 +64,6 @@ class PostListContainer extends React.Component {
   };
   render() {
     const { posts, comments } = this.props;
-    console.log(
-      'PostListContainer render posts:' + JSON.stringify(posts, null, 4)
-    );
 
     return (
       <div>
@@ -109,13 +85,9 @@ PostListContainer.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('PostListContainer ownProps' + JSON.stringify(ownProps, null, 4));
   const categoryStr = ownProps.match.params.categoryStr
     ? ownProps.match.params.categoryStr
     : '';
-  console.log(
-    'PostListContainer categoryStr' + JSON.stringify(categoryStr, null, 4)
-  );
 
   return {
     posts: Object.values(state.posts)

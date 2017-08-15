@@ -70,7 +70,6 @@ PostFormAdd = reduxForm({
 })(PostFormAdd);
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('PostFormAdd mapStateToProps');
   return {
     categories: state.categories,
     initialValues: {},

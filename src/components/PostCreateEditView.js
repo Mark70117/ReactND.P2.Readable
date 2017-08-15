@@ -11,11 +11,9 @@ import { syncCategories } from '../actions';
 
 class PostCreateEditView extends React.Component {
   componentDidMount() {
-    console.log('PostCreateEditView componentDidMount');
     const { setCategories } = this.props;
     if (Object.keys(this.props.categories).length === 0) {
       getCategories().then(categories => {
-        console.log('categories :' + JSON.stringify(categories, null, 4));
         setCategories(categories);
       });
     }
@@ -24,7 +22,6 @@ class PostCreateEditView extends React.Component {
   add = values => {
     const { mergePosts, history, postId } = this.props;
 
-    console.log('PostCreateEditView add' + JSON.stringify(values, null, 4));
     const theUUID = uuid.v4();
     const post = {
       id: theUUID,
@@ -34,13 +31,8 @@ class PostCreateEditView extends React.Component {
       author: values.author ? values.author : '',
       category: values.category ? values.category : '',
     };
-    console.log('PostCreateEditView add post' + JSON.stringify(post, null, 4));
     addPost(post);
     postPosts(post).then(resultPost => {
-      console.log(
-        'PostCreateEditView add resultPost' +
-          JSON.stringify(resultPost, null, 4)
-      );
       mergePosts([resultPost]);
       history.push(`/postdetails/${theUUID}`);
     });
@@ -48,20 +40,14 @@ class PostCreateEditView extends React.Component {
   edit = values => {
     const { mergePosts, history, postId } = this.props;
 
-    console.log('PostCreateEditView edit' + JSON.stringify(values, null, 4));
     const post = {
       id: values.id,
       timestamp: Date.now(),
       title: values.title,
       body: values.body,
     };
-    console.log('PostCreateEditView edit post' + JSON.stringify(post, null, 4));
     editPost(post);
     putPostsId(post).then(resultPost => {
-      console.log(
-        'PostCreateEditView edit resultPost' +
-          JSON.stringify(resultPost, null, 4)
-      );
       mergePosts([resultPost]);
       history.push(`/postdetails/${postId}`);
     });
@@ -84,14 +70,8 @@ PostCreateEditView.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(
-    'PostCreateEditView mapStateToProps' + JSON.stringify(ownProps, null, 4)
-  );
   const postid = ownProps.match.params.postId;
-  console.log(
-    'PostCreateEditView mapStateToProps postId' +
-      JSON.stringify(postid, null, 4)
-  );
+
   return {
     dummy: state.dummy,
     postId: postid,

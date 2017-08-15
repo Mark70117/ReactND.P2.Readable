@@ -7,9 +7,7 @@ import './../App.css';
 
 class App extends React.Component {
   // REFACTOR rename from App
-  componentDidMount() {
-    console.log('App componentDidMount');
-  }
+
   render() {
     const { match } = this.props;
     return (

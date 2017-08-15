@@ -18,18 +18,12 @@ class CommentListContainer extends React.Component {
   componentDidMount() {
     const { postId, mergeComments } = this.props;
 
-    console.log(
-      'CommentListContainer componentDidMount postId' +
-        JSON.stringify(postId, null, 4)
-    );
     getAppropriateComment(postId, mergeComments);
   }
 
   handleUpVote = comment => {
     const { mergeComments } = this.props;
-    console.log(
-      'CommentDetailsContainer handleUpVote' + JSON.stringify(comment, null, 4)
-    );
+
     const currVoteScore = comment.voteScore;
     mergeComments([{ ...comment, voteScore: currVoteScore + 1 }]);
     postCommentsId(comment.id, 'upVote').then(comment => {
@@ -39,10 +33,7 @@ class CommentListContainer extends React.Component {
 
   handleDownVote = comment => {
     const { mergeComments } = this.props;
-    console.log(
-      'CommentDetailsContainer handleDownVote' +
-        JSON.stringify(comment, null, 4)
-    );
+
     const currVoteScore = comment.voteScore;
     mergeComments([{ ...comment, voteScore: currVoteScore - 1 }]);
     postCommentsId(comment.id, 'downVote').then(comment => {
@@ -53,17 +44,11 @@ class CommentListContainer extends React.Component {
   handleDelete = comment => {
     const { mergeComments } = this.props;
 
-    console.log('CommentDetailsContainer handleDelete');
-
     mergeComments([{ ...comment, deleted: true, timestamp: Date.now() }]);
     deleteCommentsId(comment.id);
   };
   render() {
     const { postId, comments } = this.props;
-    console.log(
-      'CommentListContainer render comments:' +
-        JSON.stringify(comments, null, 4)
-    );
 
     return (
       <div>
@@ -91,19 +76,6 @@ CommentListContainer.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(
-    'CommentListContainer ownProps' + JSON.stringify(ownProps, null, 4)
-  );
-  // const categoryStr = ownProps.match.params.categoryStr
-  //   ? ownProps.match.params.categoryStr
-  //   : '';
-  // console.log(
-  //   'PostListContainer categoryStr' + JSON.stringify(categoryStr, null, 4)
-  // );
-  console.log(
-    'CommentListContainer state.comments' +
-      JSON.stringify(state.comments, null, 4)
-  );
   return {
     comments: Object.values(state.comments)
       .filter(comment => comment.parentId === ownProps.postId)

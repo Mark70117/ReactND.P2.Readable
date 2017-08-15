@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 import PostDetailsContainer from './PostDetailsContainer';
 
 class PostDetailView extends React.Component {
-  componentDidMount() {
-    console.log('PostDetailView componentDidMount');
-  }
   render() {
     const { dummy, match } = this.props;
 

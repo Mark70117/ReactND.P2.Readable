@@ -18,11 +18,6 @@ class CommentSortOrderChangerContainer extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(
-    'CommentSortOrderChangerContainer ownProps' +
-      JSON.stringify(ownProps, null, 4)
-  );
-
   return {
     value: state.commentSortOrder.str,
   };
