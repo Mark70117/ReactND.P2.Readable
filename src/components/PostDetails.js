@@ -10,12 +10,7 @@ import CommentListContainer from './CommentListContainer';
 class PostDetails extends Component {
   static propTypes = {
     post: PropTypes.object, // can be undefined if not loaded
-    onEdit: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-  };
-
-  handleEdit = event => {
-    const { onEdit } = this.props;
   };
 
   handleDelete = event => {

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import CategoryTodo from './CategoryTodo';
 import CategoryDetails from './CategoryDetails';
 
 class CategoryView extends React.Component {
@@ -14,7 +13,6 @@ class CategoryView extends React.Component {
 
     return (
       <Switch>
-        <Route exact path="/category" component={CategoryTodo} />
         <Route path="/category/:categoryStr" component={CategoryDetails} />
       </Switch>
     );

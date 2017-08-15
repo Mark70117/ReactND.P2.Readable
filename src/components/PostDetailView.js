@@ -12,32 +12,7 @@ class PostDetailView extends React.Component {
 
     return (
       <div className="PostDetailView">
-        <ul>
-          <li>
-            TODO should show the details of a post, including: Title, Body,
-            Author, timestamp (in user readable format), and vote score
-          </li>
-          <li>
-            TODO should list all of the comments for that post, ordered by
-            voteScore (highest first)
-          </li>
-          <li>
-            TODO should have a control for reordering comments by score or
-            timestamp
-          </li>
-          <li>TODO should have controls to edit or delete the post</li>
-          <li>TODO should have a control to add a new comment.</li>
-          <li>
-            TODO implement comment form however you want (inline, modal, etc.)
-          </li>
-          <li>
-            TODO comments should also have controls for editing or deleting
-          </li>
-        </ul>
         <PostDetailsContainer postId={match.params.postId} />
-        <h1>
-          {match.params.postId}
-        </h1>
       </div>
     );
   }

@@ -72,14 +72,6 @@ class PostCreateEditView extends React.Component {
 
     return (
       <div className="PostCreateEditView">
-        <ul>
-          <li>
-            TODO should have a form to create new post or edit existing posts
-          </li>
-          <li>
-            TODO when editing, existing data should be populated in the form
-          </li>
-        </ul>
         {postId
           ? <PostFormEdit postId={postId} onSubmit={this.edit} />
           : <PostFormAdd onSubmit={this.add} />}

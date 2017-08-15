@@ -20,7 +20,6 @@ export const getCategories = () =>
 // GET /:category/posts
 // USAGE:
 // Get all of the posts for a particular category
-// -- TODO -- Untested
 export const getCategoryPosts = category =>
   fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
@@ -171,7 +170,6 @@ export const postComments = comment => {
 // GET /comments/:id
 // USAGE:
 // Get the details for a single comment
-// -- TODO -- Untested
 export const getCommentsId = id =>
   fetch(`${api}/comments/${id}`, { headers })
     .then(res => res.json())

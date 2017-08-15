@@ -20,9 +20,6 @@ class PostDetailsContainer extends Component {
       mergePosts([post]);
     });
   }
-  onEdit = () => {
-    console.log('TODO');
-  };
 
   onDelete = () => {
     const { post, mergePosts } = this.props;
@@ -66,7 +63,6 @@ class PostDetailsContainer extends Component {
     return (
       <PostDetails
         post={post}
-        onEdit={this.onEdit}
         onDelete={this.onDelete}
         onUpVote={this.onUpVote}
         onDownVote={this.onDownVote}

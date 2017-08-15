@@ -9,11 +9,6 @@ import {
 } from '../utils/shared';
 
 export default function postSortOrder(state = sortOrderInitialState, action) {
-  console.log('pso ' + action.type);
-  console.log('pso ' + action.sortOrder);
-  console.log('pso postSortOrder :' + action.sortOrder);
-  console.log('pso typeof(postSortOrder): ' + typeof action.sortOrder);
-
   switch (action.type) {
     case SET_POST_SORT_ORDER:
       return {
