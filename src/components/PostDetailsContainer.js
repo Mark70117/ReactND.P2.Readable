@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PostDetails from './PostDetails';
-import { setPostSortOrder } from '../actions';
 import { getPostsId } from '../utils/api';
 import { deletePostsId, postPostsId } from '../utils/api';
 import { syncPosts } from '../actions';

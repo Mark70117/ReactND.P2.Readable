@@ -11,7 +11,7 @@ import { syncComments, editComment, addComment } from '../actions';
 
 class CommentCreateEditView extends React.Component {
   add = values => {
-    const { mergeComments, history, commentId } = this.props;
+    const { mergeComments, history } = this.props;
 
     const theUUID = uuid.v4();
     const comment = {
@@ -29,7 +29,7 @@ class CommentCreateEditView extends React.Component {
     history.push(`/postdetails/${values.parentId}`);
   };
   edit = values => {
-    const { mergeComments, history, commentId } = this.props;
+    const { mergeComments, history } = this.props;
 
     const comment = {
       id: values.id,

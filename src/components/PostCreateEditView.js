@@ -20,7 +20,7 @@ class PostCreateEditView extends React.Component {
   }
 
   add = values => {
-    const { mergePosts, history, postId } = this.props;
+    const { mergePosts, history } = this.props;
 
     const theUUID = uuid.v4();
     const post = {
