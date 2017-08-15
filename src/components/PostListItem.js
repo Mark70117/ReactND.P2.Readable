@@ -7,7 +7,7 @@ import FaArrowDown from 'react-icons/lib/fa/arrow-down';
 
 class PostListItem extends Component {
   static propTypes = {
-    post: PropTypes.array.isRequired,
+    post: PropTypes.object.isRequired,
     onUpVote: PropTypes.func.isRequired,
     onDownVote: PropTypes.func.isRequired,
   };

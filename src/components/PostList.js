@@ -13,6 +13,7 @@ const PostList = ({ posts, comments, onUpVote, onDownVote }) =>
 
       return (
         <PostListItem
+          key={post.id}
           post={post}
           commentCount={commentCount}
           onUpVote={onUpVote}
