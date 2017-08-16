@@ -25,6 +25,8 @@ $CMD npm install
 $CMD node server
 ```
 
+see https://github.com/udacity/reactnd-project-readable-starter for details.
+
 ## Running App
 Enter the App direcotry
 ```
