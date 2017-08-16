@@ -3,7 +3,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import App from './App';
+import DefaultView from './DefaultView';
 import CategoryDetails from './CategoryDetails';
 import PostDetailView from './PostDetailView';
 import PostCreateEditView from './PostCreateEditView';
@@ -13,7 +13,7 @@ const Root = ({ store }) =>
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={App} />
+        <Route exact path="/" component={DefaultView} />
         <Route path="/category/:categoryStr" component={CategoryDetails} />{' '}
         <Route path="/postdetails/:postId" component={PostDetailView} />
         <Route exact path="/postedit" component={PostCreateEditView} />

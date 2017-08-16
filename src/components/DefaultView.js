@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CategoryNavContainer from './CategoryNavContainer';
 import PostListContainer from './PostListContainer';
-import './../App.css';
+import './../DefaultView.css';
 
-const App = ({ match }) =>
-  <div className="App">
+const DefaultView = ({ match }) =>
+  <div className="DefaultView">
     <CategoryNavContainer />
     <PostListContainer match={match} />
   </div>;
 
-App.propTypes = { match: PropTypes.object.isRequired };
+DefaultView.propTypes = { match: PropTypes.object.isRequired };
 
-export default App;
+export default DefaultView;
