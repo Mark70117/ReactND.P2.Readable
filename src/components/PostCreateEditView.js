@@ -10,6 +10,16 @@ import { getCategories } from '../utils/api';
 import { syncCategories } from '../actions';
 
 class PostCreateEditView extends React.Component {
+  static propTypes = {
+    categories: PropTypes.array.isRequired,
+    changePost: PropTypes.func.isRequired,
+    createPost: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
+    mergePosts: PropTypes.func.isRequired,
+    postId: PropTypes.string,
+    setCategories: PropTypes.func.isRequired,
+  };
+
   componentDidMount() {
     const { categories, setCategories } = this.props;
     if (Object.keys(categories).length === 0) {
@@ -64,16 +74,6 @@ class PostCreateEditView extends React.Component {
     );
   }
 }
-
-PostCreateEditView.propTypes = {
-  categories: PropTypes.array.isRequired,
-  changePost: PropTypes.func.isRequired,
-  createPost: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
-  mergePosts: PropTypes.func.isRequired,
-  postId: PropTypes.string,
-  setCategories: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state, ownProps) => {
   const postid = ownProps.match.params.postId;

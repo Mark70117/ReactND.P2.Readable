@@ -6,6 +6,10 @@ import { getCategories } from '../utils/api';
 import { syncCategories } from '../actions';
 
 class CategoryNavContainer extends React.Component {
+  static propTypes = {
+    categories: PropTypes.array.isRequired,
+    setCategories: PropTypes.func.isRequired,
+  };
   componentDidMount() {
     const { categories, setCategories } = this.props;
     if (Object.keys(categories).length === 0) {
@@ -28,11 +32,6 @@ class CategoryNavContainer extends React.Component {
     );
   }
 }
-
-CategoryNavContainer.propTypes = {
-  categories: PropTypes.array.isRequired,
-  setCategories: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = state => ({
   categories: state.categories,

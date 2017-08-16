@@ -26,6 +26,14 @@ const getAppropriatePost = (mergePosts, mergeComments, match) => {
 };
 
 class PostListContainer extends React.Component {
+  static propTypes = {
+    comments: PropTypes.array,
+    match: PropTypes.object.isRequired,
+    mergeComments: PropTypes.func.isRequired,
+    mergePosts: PropTypes.func.isRequired,
+    posts: PropTypes.array.isRequired,
+  };
+
   componentDidMount() {
     const { mergePosts, mergeComments, match } = this.props;
 
@@ -76,14 +84,6 @@ class PostListContainer extends React.Component {
     );
   }
 }
-
-PostListContainer.propTypes = {
-  comments: PropTypes.array,
-  match: PropTypes.object.isRequired,
-  mergeComments: PropTypes.func.isRequired,
-  mergePosts: PropTypes.func.isRequired,
-  posts: PropTypes.array.isRequired,
-};
 
 const mapStateToProps = (state, ownProps) => {
   const categoryStr = ownProps.match.params.categoryStr

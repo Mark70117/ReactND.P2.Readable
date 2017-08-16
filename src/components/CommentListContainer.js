@@ -2,19 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CommentList from './CommentList';
-import CommentSortOrderChangerContainer from './CommentSortOrderChangerContainer'; //FIX
+import CommentSortOrderChangerContainer from './CommentSortOrderChangerContainer'; 
 import {
   getPostsIdComments,
   deleteCommentsId,
   postCommentsId,
 } from '../utils/api';
-//import { getCategoryPosts } from '../utils/api';
 import { syncComments } from '../actions';
 import { NavLink } from 'react-router-dom';
-//import { postPostsId } from '../utils/api';
 import { getAppropriateComment } from '../utils/shared';
 
 class CommentListContainer extends React.Component {
+  static .propTypes = {
+    postId: PropTypes.string.isRequired,
+    comments: PropTypes.array.isRequired,
+  };
+
   componentDidMount() {
     const { postId, mergeComments } = this.props;
 
@@ -68,11 +71,6 @@ class CommentListContainer extends React.Component {
     );
   }
 }
-
-CommentListContainer.propTypes = {
-  postId: PropTypes.string.isRequired,
-  comments: PropTypes.array.isRequired,
-};
 
 const mapStateToProps = (state, ownProps) => {
   return {

@@ -8,6 +8,15 @@ import { putCommentsId, postComments } from '../utils/api';
 import { syncComments, editComment, addComment } from '../actions';
 
 class CommentCreateEditView extends React.Component {
+  static propTypes = {
+    changeComment: PropTypes.func.isRequired,
+    commentId: PropTypes.string,
+    createComment: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
+    mergeComments: PropTypes.func.isRequired,
+    parentId: PropTypes.string.isRequired,
+  };
+
   add = values => {
     const { createComment, mergeComments, history } = this.props;
 
@@ -59,15 +68,6 @@ class CommentCreateEditView extends React.Component {
     );
   }
 }
-
-CommentCreateEditView.propTypes = {
-  changeComment: PropTypes.func.isRequired,
-  commentId: PropTypes.string,
-  createComment: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
-  mergeComments: PropTypes.func.isRequired,
-  parentId: PropTypes.string.isRequired,
-};
 
 const mapStateToProps = (state, ownProps) => {
   const commentId = ownProps.match.params.commentId;
