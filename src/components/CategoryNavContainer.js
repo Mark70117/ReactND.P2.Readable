@@ -7,10 +7,10 @@ import { syncCategories } from '../actions';
 
 class CategoryNavContainer extends React.Component {
   componentDidMount() {
-    const { setCategories } = this.props;
-    if (Object.keys(this.props.categories).length === 0) {
-      getCategories().then(categories => {
-        setCategories(categories);
+    const { categories, setCategories } = this.props;
+    if (Object.keys(categories).length === 0) {
+      getCategories().then(returnedCategories => {
+        setCategories(returnedCategories);
       });
     }
   }
