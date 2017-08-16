@@ -1,4 +1,4 @@
-const api = process.env.REACT_APP_SERVER_URL; // FIX  -- need to get from env
+const api = process.env.REACT_APP_SERVER_URL;
 
 const headers = {
   Accept: 'application/json',
