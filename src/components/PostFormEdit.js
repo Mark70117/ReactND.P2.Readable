@@ -38,6 +38,7 @@ let PostFormEdit = props => {
 
 PostFormEdit.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  initialValues: PropTypes.object.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
 };
