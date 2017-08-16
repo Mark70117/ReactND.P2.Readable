@@ -4,24 +4,17 @@ import { connect } from 'react-redux';
 import SortOrderChanger from './SortOrderChanger';
 import { setCommentSortOrder } from '../actions';
 
-class CommentSortOrderChangerContainer extends Component {
-  static propTypes = {
-    value: PropTypes.string.isRequired,
-    changeCommentSortOrder: PropTypes.func.isRequired,
-  };
+const CommentSortOrderChangerContainer = ({ value, changeCommentSortOrder }) =>
+  <SortOrderChanger value={value} onChange={changeCommentSortOrder} />;
 
-  render() {
-    const { value, changeCommentSortOrder } = this.props;
-
-    return <SortOrderChanger value={value} onChange={changeCommentSortOrder} />;
-  }
-}
-
-const mapStateToProps = (state, ownProps) => {
-  return {
-    value: state.commentSortOrder.str,
-  };
+CommentSortOrderChangerContainer.propTypes = {
+  value: PropTypes.string.isRequired,
+  changeCommentSortOrder: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = (state, ownProps) => ({
+  value: state.commentSortOrder.str,
+});
 
 const mapDispatchToProps = dispatch => ({
   changeCommentSortOrder: data => dispatch(setCommentSortOrder(data)),
