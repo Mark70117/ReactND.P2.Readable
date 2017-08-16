@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CommentListItem from './CommentListItem';
-import { dateFromEpochInt } from '../utils/date.js';
 
 const CommentList = ({ comments, onUpVote, onDownVote, onDelete }) =>
   <ol>

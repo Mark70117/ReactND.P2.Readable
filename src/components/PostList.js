@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PostDetailsLink from './PostDetailsLink';
 import PostListItem from './PostListItem';
-import { dateFromEpochInt } from '../utils/date.js';
 
 const PostList = ({ posts, comments, onUpVote, onDownVote }) =>
   <ol>

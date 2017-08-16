@@ -1,13 +1,6 @@
 import { SET_COMMENT_SORT_ORDER } from '../actions';
 
-import {
-  sortVoteAscending,
-  sortVoteDecending,
-  sortTimestampAscending,
-  sortTimeStampDecending,
-  sortOrderInitialState,
-  sortOrderStringToFunc,
-} from '../utils/shared';
+import { sortOrderInitialState, sortOrderStringToFunc } from '../utils/shared';
 
 export default function commentSortOrder(
   state = sortOrderInitialState,

@@ -21,7 +21,7 @@ class PostListItem extends Component {
     onDownVote(post);
   };
   render() {
-    const { commentCount, onUpVote, onDownVote, post } = this.props;
+    const { commentCount, post } = this.props;
     return (
       <li key={post.id}>
         <PostDetailsLink postId={post.id}>{post.title}</PostDetailsLink>

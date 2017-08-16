@@ -4,7 +4,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { syncComments } from '../actions';
 
 let CommentFormEdit = props => {
   const { handleSubmit, pristine, submitting } = props;

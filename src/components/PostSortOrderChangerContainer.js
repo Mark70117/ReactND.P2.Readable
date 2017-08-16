@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SortOrderChanger from './SortOrderChanger';
@@ -9,7 +9,7 @@ const PostSortOrderChangerContainer = ({ value, changePostSortOrder }) =>
 
 PostSortOrderChangerContainer.propTypes = {
   value: PropTypes.string.isRequired,
-  changeCommentSortOrder: PropTypes.func.isRequired,
+  changePostSortOrder: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => ({

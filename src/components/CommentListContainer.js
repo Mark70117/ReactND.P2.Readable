@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
 import CommentList from './CommentList';
 import CommentSortOrderChangerContainer from './CommentSortOrderChangerContainer';
-import {
-  getPostsIdComments,
-  deleteCommentsId,
-  postCommentsId,
-} from '../utils/api';
+import { deleteCommentsId, postCommentsId } from '../utils/api';
 import { syncComments } from '../actions';
-import { NavLink } from 'react-router-dom';
 import { getAppropriateComment } from '../utils/shared';
 
 class CommentListContainer extends React.Component {

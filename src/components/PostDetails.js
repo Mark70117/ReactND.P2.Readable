@@ -16,15 +16,15 @@ class PostDetails extends Component {
   };
 
   handleDelete = event => {
-    const { post, onDelete } = this.props;
+    const { onDelete } = this.props;
     onDelete();
   };
   handleUpVote = event => {
-    const { post, onUpVote } = this.props;
+    const { onUpVote } = this.props;
     onUpVote();
   };
   handleDownVote = event => {
-    const { post, onDownVote } = this.props;
+    const { onDownVote } = this.props;
     onDownVote();
   };
   loadingPost() {

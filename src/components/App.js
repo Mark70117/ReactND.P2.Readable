@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import CategoryNavContainer from './CategoryNavContainer';
 import PostListContainer from './PostListContainer';
 import './../App.css';
