@@ -1,4 +1,4 @@
-const api = 'http://192.168.0.201:5001'; // FIX  -- need to get from env
+const api = process.env.REACT_APP_SERVER_URL; // FIX  -- need to get from env
 
 const headers = {
   Accept: 'application/json',
@@ -27,10 +27,15 @@ export const getCategoryPosts = category =>
 // GET /posts
 // USAGE:
 // Get all of the posts. Useful for the main page when no category is selected.
-export const getPosts = () =>
-  fetch(`${api}/posts`, { headers }).then(res => res.json()).then(data => {
-    return data;
-  });
+export const getPosts = () => {
+  console.log('YO' + JSON.stringify(process.env));
+
+  return fetch(`${api}/posts`, { headers })
+    .then(res => res.json())
+    .then(data => {
+      return data;
+    });
+};
 
 // POST /posts
 // USAGE:
