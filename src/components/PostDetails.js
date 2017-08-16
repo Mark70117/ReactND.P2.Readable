@@ -11,6 +11,8 @@ class PostDetails extends Component {
   static propTypes = {
     post: PropTypes.object, // can be undefined if not loaded
     onDelete: PropTypes.func.isRequired,
+    onDownVote: PropTypes.func.isRequired,
+    onUpVote: PropTypes.func.isRequired,
   };
 
   handleDelete = event => {

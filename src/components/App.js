@@ -19,7 +19,7 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = { match: PropTypes.object };
+App.propTypes = { match: PropTypes.object.isRequired };
 
 const mapStateToProps = state => ({
   dummy: state.dummy,

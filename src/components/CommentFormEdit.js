@@ -1,6 +1,7 @@
 //http://redux-form.com/7.0.3/examples/initializeFromState/
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { syncComments } from '../actions';
@@ -25,8 +26,14 @@ let CommentFormEdit = props => {
   );
 };
 
+CommentFormEdit.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired,
+};
+
 CommentFormEdit = reduxForm({
-  form: 'postFormEdit', // a unique identifier for this form
+  form: 'commentFormEdit', // a unique identifier for this form
 })(CommentFormEdit);
 
 const mapStateToProps = (state, ownProps) => {
@@ -35,8 +42,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  mergeComments: data => dispatch(syncComments(data)),
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentFormEdit);

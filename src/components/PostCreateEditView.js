@@ -11,10 +11,10 @@ import { syncCategories } from '../actions';
 
 class PostCreateEditView extends React.Component {
   componentDidMount() {
-    const { setCategories } = this.props;
-    if (Object.keys(this.props.categories).length === 0) {
-      getCategories().then(categories => {
-        setCategories(categories);
+    const { categories, setCategories } = this.props;
+    if (Object.keys(categories).length === 0) {
+      getCategories().then(returnedCategories => {
+        setCategories(returnedCategories);
       });
     }
   }
@@ -53,7 +53,7 @@ class PostCreateEditView extends React.Component {
     });
   };
   render() {
-    const { dummy, postId } = this.props;
+    const { postId } = this.props;
 
     return (
       <div className="PostCreateEditView">
@@ -66,14 +66,19 @@ class PostCreateEditView extends React.Component {
 }
 
 PostCreateEditView.propTypes = {
-  dummy: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired,
+  changePost: PropTypes.func.isRequired,
+  createPost: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  mergePosts: PropTypes.func.isRequired,
+  postId: PropTypes.string,
+  setCategories: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
   const postid = ownProps.match.params.postId;
 
   return {
-    dummy: state.dummy,
     postId: postid,
     categories: state.categories,
   };

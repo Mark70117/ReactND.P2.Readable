@@ -70,9 +70,8 @@ class CommentListContainer extends React.Component {
 }
 
 CommentListContainer.propTypes = {
-  match: PropTypes.object, // from route??
-  postId: PropTypes.string,
-  comments: PropTypes.array,
+  postId: PropTypes.string.isRequired,
+  comments: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {

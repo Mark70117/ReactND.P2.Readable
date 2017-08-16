@@ -29,7 +29,7 @@ class CommentListItem extends Component {
     onDelete(comment);
   };
   render() {
-    const { comment, onUpVote, onDownVote } = this.props;
+    const { comment } = this.props;
     return (
       <li key={comment.id}>
         {comment.body}

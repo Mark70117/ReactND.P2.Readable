@@ -32,16 +32,13 @@ class PostListContainer extends React.Component {
     getAppropriatePost(mergePosts, mergeComments, match);
   }
   componentDidUpdate(prevProps) {
+    const { match, mergeComments, mergePosts } = this.props;
     if (
       prevProps.match &&
-      this.props.match &&
-      prevProps.match.params.categoryStr !== this.props.match.params.categoryStr
+      match &&
+      prevProps.match.params.categoryStr !== match.params.categoryStr
     ) {
-      getAppropriatePost(
-        this.props.mergePosts,
-        this.props.mergeComments,
-        this.props.match
-      ); //REFACTOR  this.props be gone
+      getAppropriatePost(mergePosts, mergeComments, match); //REFACTOR  this.props be gone
     }
   }
   handleUpVote = post => {
@@ -81,7 +78,11 @@ class PostListContainer extends React.Component {
 }
 
 PostListContainer.propTypes = {
-  match: PropTypes.object, // from route??
+  comments: PropTypes.array,
+  match: PropTypes.object.isRequired,
+  mergeComments: PropTypes.func.isRequired,
+  mergePosts: PropTypes.func.isRequired,
+  posts: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -96,7 +97,7 @@ const mapStateToProps = (state, ownProps) => {
       .sort(state.postSortOrder.func),
     comments: Object.values(state.comments)
       .filter(comment => !comment.deleted)
-      .filter(comment => !comment.parentDeleted), // REFACTOR ??? filter  comment => comment.parentId in posts
+      .filter(comment => !comment.parentDeleted),
   };
 };
 

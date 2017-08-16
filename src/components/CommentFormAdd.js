@@ -1,12 +1,12 @@
 //http://redux-form.com/7.0.3/examples/initializeFromState/
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { syncPosts } from '../actions';
 
-let PostFormAdd = props => {
-  const { categories, handleSubmit, pristine, submitting } = props;
+let CommentFormAdd = props => {
+  const { handleSubmit, pristine, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -35,21 +35,22 @@ let PostFormAdd = props => {
   );
 };
 
-// TOOO can alter submitting or some other prop to disabled until all have values?
+CommentFormAdd.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired,
+};
 
-PostFormAdd = reduxForm({
-  form: 'postFormAdd', // a unique identifier for this form
-})(PostFormAdd);
+CommentFormAdd = reduxForm({
+  form: 'commentFormAdd', // a unique identifier for this form
+})(CommentFormAdd);
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    categories: state.categories,
     initialValues: { parentId: ownProps.parentId },
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  mergePosts: data => dispatch(syncPosts(data)),
-});
+const mapDispatchToProps = dispatch => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostFormAdd);
+export default connect(mapStateToProps, mapDispatchToProps)(CommentFormAdd);

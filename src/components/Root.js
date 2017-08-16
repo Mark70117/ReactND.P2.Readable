@@ -4,7 +4,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import App from './App';
-import CategoryView from './CategoryView';
+import CategoryDetails from './CategoryDetails';
 import PostDetailView from './PostDetailView';
 import PostCreateEditView from './PostCreateEditView';
 import CommentCreateEditView from './CommentCreateEditView';
@@ -14,7 +14,7 @@ const Root = ({ store }) =>
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={App} />
-        <Route path="/category" component={CategoryView} />
+        <Route path="/category/:categoryStr" component={CategoryDetails} />{' '}
         <Route path="/postdetails/:postId" component={PostDetailView} />
         <Route exact path="/postedit" component={PostCreateEditView} />
         <Route path="/postedit/:postId" component={PostCreateEditView} />

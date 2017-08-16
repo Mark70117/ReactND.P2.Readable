@@ -1,6 +1,7 @@
 //http://redux-form.com/7.0.3/examples/initializeFromState/
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { syncPosts } from '../actions';
@@ -62,7 +63,12 @@ let PostFormAdd = props => {
   );
 };
 
-// TOOO can alter submitting or some other prop to disabled until all have values?
+PostFormAdd.propTypes = {
+  categories: PropTypes.array.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired,
+};
 
 PostFormAdd = reduxForm({
   form: 'postFormAdd', // a unique identifier for this form

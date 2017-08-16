@@ -7,9 +7,10 @@ import FaArrowDown from 'react-icons/lib/fa/arrow-down';
 
 class PostListItem extends Component {
   static propTypes = {
-    post: PropTypes.object.isRequired,
+    commentCount: PropTypes.number.isRequired,
     onUpVote: PropTypes.func.isRequired,
     onDownVote: PropTypes.func.isRequired,
+    post: PropTypes.object.isRequired,
   };
   handleUpVote = event => {
     const { post, onUpVote } = this.props;
@@ -20,7 +21,7 @@ class PostListItem extends Component {
     onDownVote(post);
   };
   render() {
-    const { post, commentCount, onUpVote, onDownVote } = this.props;
+    const { commentCount, onUpVote, onDownVote, post } = this.props;
     return (
       <li key={post.id}>
         <PostDetailsLink postId={post.id}>{post.title}</PostDetailsLink>

@@ -1,6 +1,7 @@
 //http://redux-form.com/7.0.3/examples/initializeFromState/
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { syncPosts } from '../actions';
@@ -36,6 +37,12 @@ let PostFormEdit = props => {
   );
 };
 
+PostFormEdit.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired,
+};
+
 PostFormEdit = reduxForm({
   form: 'postFormEdit', // a unique identifier for this form
 })(PostFormEdit);
@@ -47,8 +54,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  mergePosts: data => dispatch(syncPosts(data)),
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostFormEdit);

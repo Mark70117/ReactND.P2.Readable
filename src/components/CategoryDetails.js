@@ -7,7 +7,6 @@ import CategoryNavContainer from './CategoryNavContainer';
 import PostListContainer from './PostListContainer';
 
 class CategoryDetails extends React.Component {
-  componentDidMount() {}
   render() {
     const { dummy, match } = this.props;
 

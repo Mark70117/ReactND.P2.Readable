@@ -15,7 +15,7 @@ class CategoryNavContainer extends React.Component {
     }
   }
   render() {
-    const { dummy, categories } = this.props;
+    const { categories } = this.props;
 
     return (
       <div>
@@ -30,12 +30,11 @@ class CategoryNavContainer extends React.Component {
 }
 
 CategoryNavContainer.propTypes = {
-  dummy: PropTypes.array.isRequired,
-  match: PropTypes.object,
+  categories: PropTypes.array.isRequired,
+  setCategories: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  dummy: state.dummy,
   categories: state.categories,
 });
 

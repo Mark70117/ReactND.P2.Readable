@@ -6,8 +6,6 @@ import CommentFormEdit from './CommentFormEdit';
 import CommentFormAdd from './CommentFormAdd';
 import { putCommentsId, postComments } from '../utils/api';
 import { syncComments, editComment, addComment } from '../actions';
-//import { getCategories } from '../utils/api';
-//import { syncCategories } from '../actions';
 
 class CommentCreateEditView extends React.Component {
   add = values => {
@@ -46,7 +44,7 @@ class CommentCreateEditView extends React.Component {
     history.push(`/postdetails/${values.parentId}`);
   };
   render() {
-    const { dummy, commentId, parentId } = this.props;
+    const { commentId, parentId } = this.props;
 
     return (
       <div className="CommentCreateEditView">
@@ -63,7 +61,12 @@ class CommentCreateEditView extends React.Component {
 }
 
 CommentCreateEditView.propTypes = {
-  dummy: PropTypes.array.isRequired,
+  changeComment: PropTypes.func.isRequired,
+  commentId: PropTypes.string,
+  createComment: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  mergeComments: PropTypes.func.isRequired,
+  parentId: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -71,7 +74,6 @@ const mapStateToProps = (state, ownProps) => {
   const parentId = ownProps.match.params.postId;
 
   return {
-    dummy: state.dummy,
     commentId: commentId,
     parentId: parentId,
   };
