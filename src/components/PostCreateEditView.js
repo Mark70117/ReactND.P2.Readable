@@ -20,7 +20,7 @@ class PostCreateEditView extends React.Component {
   }
 
   add = values => {
-    const { mergePosts, history } = this.props;
+    const { createPost, mergePosts, history } = this.props;
 
     const theUUID = uuid.v4();
     const post = {
@@ -31,14 +31,14 @@ class PostCreateEditView extends React.Component {
       author: values.author ? values.author : '',
       category: values.category ? values.category : '',
     };
-    addPost(post);
+    createPost(post);
     postPosts(post).then(resultPost => {
       mergePosts([resultPost]);
       history.push(`/postdetails/${theUUID}`);
     });
   };
   edit = values => {
-    const { mergePosts, history, postId } = this.props;
+    const { changePost, mergePosts, history, postId } = this.props;
 
     const post = {
       id: values.id,
@@ -46,7 +46,7 @@ class PostCreateEditView extends React.Component {
       title: values.title,
       body: values.body,
     };
-    editPost(post);
+    changePost(post);
     putPostsId(post).then(resultPost => {
       mergePosts([resultPost]);
       history.push(`/postdetails/${postId}`);
@@ -81,6 +81,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   mergePosts: data => dispatch(syncPosts(data)),
+  createPost: data => dispatch(addPost(data)),
+  changePost: data => dispatch(editPost(data)),
   setCategories: data => dispatch(syncCategories(data)),
 });
 

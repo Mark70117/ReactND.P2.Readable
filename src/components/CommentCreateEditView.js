@@ -11,7 +11,7 @@ import { syncComments, editComment, addComment } from '../actions';
 
 class CommentCreateEditView extends React.Component {
   add = values => {
-    const { mergeComments, history } = this.props;
+    const { createComment, mergeComments, history } = this.props;
 
     const theUUID = uuid.v4();
     const comment = {
@@ -22,14 +22,15 @@ class CommentCreateEditView extends React.Component {
       author: values.author ? values.author : '',
     };
 
-    addComment(comment);
+    createComment(comment);
+
     postComments(comment).then(resultComment => {
       mergeComments([resultComment]);
     });
     history.push(`/postdetails/${values.parentId}`);
   };
   edit = values => {
-    const { mergeComments, history } = this.props;
+    const { changeComment, mergeComments, history } = this.props;
 
     const comment = {
       id: values.id,
@@ -37,7 +38,8 @@ class CommentCreateEditView extends React.Component {
       body: values.body,
     };
 
-    editComment(comment);
+    changeComment(comment);
+
     putCommentsId(comment).then(resultComment => {
       mergeComments([resultComment]);
     });
@@ -77,6 +79,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
   mergeComments: data => dispatch(syncComments(data)),
+  createComment: data => dispatch(addComment(data)),
+  changeComment: data => dispatch(editComment(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(

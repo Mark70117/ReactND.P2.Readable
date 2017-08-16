@@ -3,7 +3,7 @@ export const SYNC_POSTS = 'SYNC_POSTS';
 export const SYNC_COMMENTS = 'SYNC_COMMENTS';
 export const EDIT_POST = 'EDIT_POST';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
-export const ADD_POST = 'EDIT_POST';
+export const ADD_POST = 'ADD_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const SET_POST_SORT_ORDER = 'SET_POST_SORT_ORDER';
 export const SET_COMMENT_SORT_ORDER = 'SET_COMMENT_SORT_ORDER';
@@ -36,7 +36,7 @@ export function editPost(post) {
 
 export function addPost(post) {
   return {
-    type: EDIT_POST,
+    type: ADD_POST,
     post,
   };
 }
@@ -65,7 +65,7 @@ export function setCommentSortOrder(sortOrder) {
 export function editComment(comment) {
   return {
     type: EDIT_COMMENT,
-    post: {
+    comment: {
       id: comment.id,
       timestamp: comment.timestamp,
       body: comment.body,
@@ -75,7 +75,7 @@ export function editComment(comment) {
 
 export function addComment(comment) {
   return {
-    type: EDIT_POST,
+    type: ADD_COMMENT,
     comment,
   };
 }

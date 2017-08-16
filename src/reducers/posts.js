@@ -1,4 +1,4 @@
-import { SYNC_POSTS, EDIT_POST, ADD_POST } from '../actions';
+import { ADD_POST, EDIT_POST, SYNC_POSTS } from '../actions';
 import { sync } from '../utils/shared';
 
 const initialState = {};
