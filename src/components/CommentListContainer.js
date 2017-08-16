@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CommentList from './CommentList';
-import CommentSortOrderChangerContainer from './CommentSortOrderChangerContainer'; 
+import CommentSortOrderChangerContainer from './CommentSortOrderChangerContainer';
 import {
   getPostsIdComments,
   deleteCommentsId,
@@ -13,7 +13,7 @@ import { NavLink } from 'react-router-dom';
 import { getAppropriateComment } from '../utils/shared';
 
 class CommentListContainer extends React.Component {
-  static .propTypes = {
+  static propTypes = {
     postId: PropTypes.string.isRequired,
     comments: PropTypes.array.isRequired,
   };
