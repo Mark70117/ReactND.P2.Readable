@@ -49,7 +49,6 @@ class PostCreateEditView extends React.Component {
   };
   edit = values => {
     const { changePost, mergePosts, history, postId } = this.props;
-
     const post = {
       id: values.id,
       timestamp: Date.now(),
@@ -59,7 +58,7 @@ class PostCreateEditView extends React.Component {
     changePost(post);
     putPostsId(post).then(resultPost => {
       mergePosts([resultPost]);
-      history.push(`/postdetails/${postId}`);
+      history.push(`/${values.category}/${postId}`);
     });
   };
   render() {

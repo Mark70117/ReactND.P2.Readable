@@ -15,9 +15,8 @@ const Root = ({ store }) =>
       <Switch>
         <Route exact path="/" component={DefaultView} />
         <Route path="/category/:categoryStr" component={CategoryDetails} />{' '}
-        <Route path="/:category/:postId" component={PostDetailView} />
         <Route exact path="/postedit" component={PostCreateEditView} />
-        <Route path="/postedit/:postId" component={PostCreateEditView} />
+        <Route exact path="/postedit/:postId" component={PostCreateEditView} />
         <Route
           exact
           path="/commentedit/:postId/:commentId"
@@ -28,6 +27,7 @@ const Root = ({ store }) =>
           path="/commentedit/:postId"
           component={CommentCreateEditView}
         />
+        <Route path="/:category/:postId" component={PostDetailView} />
       </Switch>
     </BrowserRouter>
   </Provider>;
