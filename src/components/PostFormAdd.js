@@ -67,11 +67,12 @@ let PostFormAdd = props => {
             <label key={element.name}>
               <Field
                 name="category"
-                component="input"
+                component={renderField}
                 type="radio"
                 value={element.name}
-              />{' '}
-              {element.name}
+                label={element.name}
+                validate={[required]}
+              />
             </label>
           )}
         </div>
