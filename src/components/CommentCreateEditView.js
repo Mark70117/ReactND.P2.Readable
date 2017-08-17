@@ -18,7 +18,7 @@ class CommentCreateEditView extends React.Component {
   };
 
   add = values => {
-    const { createComment, mergeComments, history } = this.props;
+    const { category, createComment, mergeComments, history } = this.props;
 
     const theUUID = uuid.v4();
     const comment = {
@@ -34,10 +34,10 @@ class CommentCreateEditView extends React.Component {
     postComments(comment).then(resultComment => {
       mergeComments([resultComment]);
     });
-    history.push(`/postdetails/${values.parentId}`);
+    history.push(`/${category}/${values.parentId}`);
   };
   edit = values => {
-    const { changeComment, mergeComments, history } = this.props;
+    const { category, changeComment, mergeComments, history } = this.props;
 
     const comment = {
       id: values.id,
@@ -50,7 +50,7 @@ class CommentCreateEditView extends React.Component {
     putCommentsId(comment).then(resultComment => {
       mergeComments([resultComment]);
     });
-    history.push(`/postdetails/${values.parentId}`);
+    history.push(`/${category}/${values.parentId}`);
   };
   render() {
     const { commentId, parentId } = this.props;
@@ -72,8 +72,10 @@ class CommentCreateEditView extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const commentId = ownProps.match.params.commentId;
   const parentId = ownProps.match.params.postId;
+  const category = ownProps.match.params.category;
 
   return {
+    category: category,
     commentId: commentId,
     parentId: parentId,
   };

@@ -4,28 +4,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { renderField, required } from '../utils/shared';
 
 let CommentFormAdd = props => {
   const { handleSubmit, pristine, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>Body</label>
-        <div>
-          <Field name="body" component="input" type="text" placeholder="Body" />
-        </div>
-      </div>
-      <div>
-        <label>Author</label>
-        <div>
-          <Field
-            name="author"
-            component="input"
-            type="text"
-            placeholder="Author"
-          />
-        </div>
-      </div>
+      <Field
+        name="body"
+        type="text"
+        component={renderField}
+        label="Body"
+        validate={[required]}
+      />
+      <Field
+        name="author"
+        type="text"
+        component={renderField}
+        label="Author"
+        validate={[required]}
+      />
       <div>
         <button type="submit" disabled={pristine || submitting}>
           Submit

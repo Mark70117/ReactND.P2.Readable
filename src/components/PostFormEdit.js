@@ -4,28 +4,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { renderField, required } from '../utils/shared';
 
 let PostFormEdit = props => {
   const { handleSubmit, pristine, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>Title</label>
-        <div>
-          <Field
-            name="title"
-            component="input"
-            type="text"
-            placeholder="Title"
-          />
-        </div>
-      </div>
-      <div>
-        <label>Body</label>
-        <div>
-          <Field name="body" component="input" type="text" placeholder="Body" />
-        </div>
-      </div>
+      <Field
+        name="title"
+        component={renderField}
+        type="text"
+        label="Title"
+        validate={[required]}
+      />
+
+      <Field
+        name="body"
+        component={renderField}
+        type="text"
+        label="Body"
+        validate={[required]}
+      />
+
+      <Field
+        name="category"
+        component={renderField}
+        type="hidden"
+        label=""
+        validate={[required]}
+      />
 
       <div>
         <button type="submit" disabled={pristine || submitting}>

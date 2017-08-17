@@ -1,3 +1,4 @@
+import React from 'react';
 import { getPostsIdComments } from '../utils/api';
 
 export const getAppropriateComment = (postId, mergeComments) => {
@@ -56,3 +57,29 @@ export const sortOrderInitialState = {
   str: 'sortVoteDecending',
   func: sortVoteDecending,
 };
+
+//http://redux-form.com/6.4.3/examples/fieldLevelValidation/
+export const required = value => (value ? undefined : 'Required');
+export const renderField = ({
+  input,
+  label,
+  type,
+  meta: { touched, error, warning },
+}) =>
+  <div>
+    <label>
+      {label}
+    </label>
+    <div>
+      <input {...input} placeholder={label} type={type} />
+      {touched &&
+        ((error &&
+          <span>
+            {error}
+          </span>) ||
+          (warning &&
+            <span>
+              {warning}
+            </span>))}
+    </div>
+  </div>;

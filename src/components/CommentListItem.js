@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom';
 
 class CommentListItem extends Component {
   static propTypes = {
+    category: PropTypes.string.isRequired,
     comment: PropTypes.object.isRequired,
     onUpVote: PropTypes.func.isRequired,
     onDownVote: PropTypes.func.isRequired,
@@ -29,7 +30,7 @@ class CommentListItem extends Component {
     onDelete(comment);
   };
   render() {
-    const { comment } = this.props;
+    const { category, comment } = this.props;
     return (
       <li key={comment.id}>
         {comment.body}
@@ -46,7 +47,16 @@ class CommentListItem extends Component {
         <button className="icon-btn" onClick={this.handleDelete}>
           <FaTrash size={10} />
         </button>
-        <NavLink to={'/commentedit/' + comment.parentId + '/' + comment.id}>
+        <NavLink
+          to={
+            '/commentedit/' +
+            category +
+            '/' +
+            comment.parentId +
+            '/' +
+            comment.id
+          }
+        >
           Edit
         </NavLink>
       </li>

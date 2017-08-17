@@ -68,7 +68,7 @@ class PostDetails extends Component {
           </li>
         </ul>
         <hr />
-        <CommentListContainer postId={post.id} />
+        <CommentListContainer category={post.category} postId={post.id} />
       </div>
     );
   }

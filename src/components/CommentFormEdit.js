@@ -27,7 +27,7 @@ let CommentFormEdit = props => {
 
 CommentFormEdit.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  initialValues: PropTypes.object.isRequired,
+  initialValues: PropTypes.object,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
 };

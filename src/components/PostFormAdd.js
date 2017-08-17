@@ -5,39 +5,36 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { syncPosts } from '../actions';
+import { renderField, required } from '../utils/shared';
 
 let PostFormAdd = props => {
   const { categories, handleSubmit, pristine, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>Title</label>
-        <div>
-          <Field
-            name="title"
-            component="input"
-            type="text"
-            placeholder="Title"
-          />
-        </div>
-      </div>
-      <div>
-        <label>Body</label>
-        <div>
-          <Field name="body" component="input" type="text" placeholder="Body" />
-        </div>
-      </div>
-      <div>
-        <label>Author</label>
-        <div>
-          <Field
-            name="author"
-            component="input"
-            type="text"
-            placeholder="Author"
-          />
-        </div>
-      </div>
+      <Field
+        name="title"
+        type="text"
+        component={renderField}
+        label="Title"
+        validate={[required]}
+      />
+
+      <Field
+        name="body"
+        type="text"
+        component={renderField}
+        label="Body"
+        validate={[required]}
+      />
+
+      <Field
+        name="author"
+        type="text"
+        component={renderField}
+        label="Author"
+        validate={[required]}
+      />
+
       <div>
         <label>Category</label>
         <div>
@@ -45,15 +42,17 @@ let PostFormAdd = props => {
             <label key={element.name}>
               <Field
                 name="category"
-                component="input"
+                component={renderField}
                 type="radio"
                 value={element.name}
-              />{' '}
-              {element.name}
+                label={element.name}
+                validate={[required]}
+              />
             </label>
           )}
         </div>
       </div>
+
       <div>
         <button type="submit" disabled={pristine || submitting}>
           Submit

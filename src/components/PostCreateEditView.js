@@ -36,20 +36,19 @@ class PostCreateEditView extends React.Component {
     const post = {
       id: theUUID,
       timestamp: Date.now(),
-      title: values.title ? values.title : '',
-      body: values.body ? values.body : '',
-      author: values.author ? values.author : '',
-      category: values.category ? values.category : '',
+      title: values.title,
+      body: values.body,
+      author: values.author,
+      category: values.category,
     };
     createPost(post);
     postPosts(post).then(resultPost => {
       mergePosts([resultPost]);
-      history.push(`/postdetails/${theUUID}`);
+      history.push(`/${values.category}/${theUUID}`);
     });
   };
   edit = values => {
     const { changePost, mergePosts, history, postId } = this.props;
-
     const post = {
       id: values.id,
       timestamp: Date.now(),
@@ -59,7 +58,7 @@ class PostCreateEditView extends React.Component {
     changePost(post);
     putPostsId(post).then(resultPost => {
       mergePosts([resultPost]);
-      history.push(`/postdetails/${postId}`);
+      history.push(`/${values.category}/${postId}`);
     });
   };
   render() {
