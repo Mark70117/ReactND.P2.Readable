@@ -31,6 +31,8 @@ class PostCreateEditView extends React.Component {
 
   add = values => {
     const { createPost, mergePosts, history } = this.props;
+    console.log('PostCreateEditView' + JSON.stringify(values));
+    console.log('PostCreateEditView cat' + values.category);
 
     const theUUID = uuid.v4();
     const post = {
@@ -39,12 +41,12 @@ class PostCreateEditView extends React.Component {
       title: values.title ? values.title : '',
       body: values.body ? values.body : '',
       author: values.author ? values.author : '',
-      category: values.category ? values.category : '',
+      category: values.category ? values.category : 'redux', //FIX
     };
     createPost(post);
     postPosts(post).then(resultPost => {
       mergePosts([resultPost]);
-      history.push(`/postdetails/${theUUID}`);
+      history.push(`/${values.category}/${theUUID}`);
     });
   };
   edit = values => {

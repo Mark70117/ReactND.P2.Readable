@@ -6,38 +6,60 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { syncPosts } from '../actions';
 
+//http://redux-form.com/6.4.3/examples/fieldLevelValidation/
+const required = value => (value ? undefined : 'Required');
+const renderField = ({
+  input,
+  label,
+  type,
+  meta: { touched, error, warning },
+}) =>
+  <div>
+    <label>
+      {label}
+    </label>
+    <div>
+      <input {...input} placeholder={label} type={type} />
+      {touched &&
+        ((error &&
+          <span>
+            {error}
+          </span>) ||
+          (warning &&
+            <span>
+              {warning}
+            </span>))}
+    </div>
+  </div>;
+
 let PostFormAdd = props => {
   const { categories, handleSubmit, pristine, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>Title</label>
-        <div>
-          <Field
-            name="title"
-            component="input"
-            type="text"
-            placeholder="Title"
-          />
-        </div>
-      </div>
-      <div>
-        <label>Body</label>
-        <div>
-          <Field name="body" component="input" type="text" placeholder="Body" />
-        </div>
-      </div>
-      <div>
-        <label>Author</label>
-        <div>
-          <Field
-            name="author"
-            component="input"
-            type="text"
-            placeholder="Author"
-          />
-        </div>
-      </div>
+      <Field
+        name="title"
+        type="text"
+        component={renderField}
+        label="Title"
+        validate={[required]}
+      />
+
+      <Field
+        name="body"
+        type="text"
+        component={renderField}
+        label="Body"
+        validate={[required]}
+      />
+
+      <Field
+        name="author"
+        type="text"
+        component={renderField}
+        label="Author"
+        validate={[required]}
+      />
+
       <div>
         <label>Category</label>
         <div>
@@ -54,6 +76,7 @@ let PostFormAdd = props => {
           )}
         </div>
       </div>
+
       <div>
         <button type="submit" disabled={pristine || submitting}>
           Submit
