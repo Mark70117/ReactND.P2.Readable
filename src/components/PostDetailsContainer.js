@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import PostDetails from './PostDetails';
 import { getPostsId } from '../utils/api';
 import { deletePostsId, postPostsId } from '../utils/api';
@@ -15,7 +16,15 @@ class PostDetailsContainer extends Component {
   componentDidMount() {
     const { postId, mergePosts } = this.props;
     getPostsId(postId).then(post => {
-      mergePosts([post]);
+      if (post.error) {
+        console.log('post getPostsId error' + JSON.stringify(post, null, 4)); //TODO
+      } else {
+        if (post.id === postId) {
+          mergePosts([post]);
+        } else {
+          mergePosts([{ id: postId, timestamp: 0, deleted: true }]);
+        }
+      }
     });
   }
 
@@ -72,5 +81,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  PostDetailsContainer
+  withRouter(PostDetailsContainer)
 );

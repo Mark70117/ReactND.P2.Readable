@@ -30,7 +30,7 @@ class PostDetails extends Component {
   loadingPost() {
     return (
       <div className="post-details">
-        '}<NavLink to="/">Home</NavLink>Loading...
+        <NavLink to="/">Home</NavLink>Loading...
       </div>
     );
   }
