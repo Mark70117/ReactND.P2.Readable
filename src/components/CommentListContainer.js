@@ -11,6 +11,7 @@ import { getAppropriateComment } from '../utils/shared';
 
 class CommentListContainer extends React.Component {
   static propTypes = {
+    category: PropTypes.string.isRequired,
     postId: PropTypes.string.isRequired,
     comments: PropTypes.array.isRequired,
   };
@@ -48,7 +49,7 @@ class CommentListContainer extends React.Component {
     deleteCommentsId(comment.id);
   };
   render() {
-    const { postId, comments } = this.props;
+    const { category, postId, comments } = this.props;
 
     return (
       <div>
@@ -56,9 +57,12 @@ class CommentListContainer extends React.Component {
           Comments (n={comments.length})
         </h2>
 
-        <NavLink to={'/commentedit/' + postId}>New Comment</NavLink>
+        <NavLink to={'/commentedit/' + category + '/' + postId}>
+          New Comment
+        </NavLink>
         <CommentSortOrderChangerContainer />
         <CommentList
+          category={category}
           comments={comments}
           onUpVote={this.handleUpVote}
           onDownVote={this.handleDownVote}

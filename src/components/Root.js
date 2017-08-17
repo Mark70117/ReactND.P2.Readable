@@ -19,12 +19,12 @@ const Root = ({ store }) =>
         <Route exact path="/postedit/:postId" component={PostCreateEditView} />
         <Route
           exact
-          path="/commentedit/:postId/:commentId"
+          path="/commentedit/:category/:postId/:commentId"
           component={CommentCreateEditView}
         />
         <Route
           exact
-          path="/commentedit/:postId"
+          path="/commentedit/:category/:postId"
           component={CommentCreateEditView}
         />
         <Route path="/:category/:postId" component={PostDetailView} />
