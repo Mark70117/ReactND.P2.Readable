@@ -24,7 +24,9 @@ class PostListItem extends Component {
     const { commentCount, post } = this.props;
     return (
       <li key={post.id}>
-        <PostDetailsLink postId={post.id}>{post.title}</PostDetailsLink>
+        <PostDetailsLink category={post.category} postId={post.id}>
+          {post.title}
+        </PostDetailsLink>
         <br />
         [votes:{post.voteScore}]
         <button className="icon-btn" onClick={this.handleUpVote}>

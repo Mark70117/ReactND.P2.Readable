@@ -15,7 +15,7 @@ const Root = ({ store }) =>
       <Switch>
         <Route exact path="/" component={DefaultView} />
         <Route path="/category/:categoryStr" component={CategoryDetails} />{' '}
-        <Route path="/postdetails/:postId" component={PostDetailView} />
+        <Route path="/:category/:postId" component={PostDetailView} />
         <Route exact path="/postedit" component={PostCreateEditView} />
         <Route path="/postedit/:postId" component={PostCreateEditView} />
         <Route
