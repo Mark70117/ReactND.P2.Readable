@@ -35,6 +35,9 @@ class PostDetails extends Component {
     );
   }
   livePost(post) {
+    if (post.timestamp === 0) {
+      return <div>Invalid Resource</div>;
+    }
     return (
       <div className="post-details">
         <NavLink to="/">Home</NavLink>
@@ -83,6 +86,7 @@ class PostDetails extends Component {
 
   render() {
     const { post } = this.props;
+    console.log('PostDetails render' + JSON.stringify(post, null, 4));
     return post
       ? post.deleted ? this.deletedPost() : this.livePost(post)
       : this.loadingPost();

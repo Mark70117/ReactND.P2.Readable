@@ -6,14 +6,23 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
 let CommentFormEdit = props => {
-  const { handleSubmit, initialValues, pristine, submitting, parentId } = props;
-  if (!initialValues) {
+  const {
+    handleSubmit,
+    initialValues,
+    pristine,
+    submitting,
+    parentId,
+    post,
+  } = props;
+  if (!initialValues || !post) {
     return <div>Loading...</div>;
   }
   if (initialValues.parentId !== parentId) {
     return <div>Invalid Resource</div>;
   }
-
+  if (post.timestamp === 0) {
+    return <div>Invalid Resource</div>;
+  }
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -37,6 +46,7 @@ CommentFormEdit.propTypes = {
   initialValues: PropTypes.object,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
+  post: PropTypes.object,
 };
 
 CommentFormEdit = reduxForm({

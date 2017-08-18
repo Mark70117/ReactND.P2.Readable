@@ -7,7 +7,13 @@ import { Field, reduxForm } from 'redux-form';
 import { renderField, required } from '../utils/shared';
 
 let CommentFormAdd = props => {
-  const { handleSubmit, pristine, submitting } = props;
+  const { handleSubmit, post, pristine, submitting } = props;
+  if (!post) {
+    return <div>Loading...</div>;
+  }
+  if (post.timestamp === 0) {
+    return <div>Invalid Resource</div>;
+  }
   return (
     <form onSubmit={handleSubmit}>
       <Field
@@ -38,6 +44,7 @@ CommentFormAdd.propTypes = {
   initialValues: PropTypes.object.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
+  post: PropTypes.object,
 };
 
 CommentFormAdd = reduxForm({

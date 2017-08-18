@@ -11,6 +11,9 @@ let PostFormEdit = props => {
   if (!initialValues) {
     return <div>Loading...</div>;
   }
+  if (initialValues.timestamp === 0) {
+    return <div>Invalid Resource</div>;
+  }
   return (
     <form onSubmit={handleSubmit}>
       <Field

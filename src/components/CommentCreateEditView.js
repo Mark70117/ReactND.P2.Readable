@@ -2,10 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import uuid from 'js-uuid';
+
 import CommentFormEdit from './CommentFormEdit';
 import CommentFormAdd from './CommentFormAdd';
+
+import { syncComments, editComment, addComment, syncPosts } from '../actions';
 import { getCommentsId, putCommentsId, postComments } from '../utils/api';
-import { syncComments, editComment, addComment } from '../actions';
+import { doGetPostsId } from '../utils/shared';
 
 class CommentCreateEditView extends React.Component {
   static propTypes = {
@@ -18,13 +21,12 @@ class CommentCreateEditView extends React.Component {
   };
 
   componentDidMount() {
-    const { commentId, mergeComments } = this.props;
+    const { commentId, mergeComments, mergePosts, parentId } = this.props;
+    doGetPostsId(mergePosts, parentId);
     if (commentId) {
       getCommentsId(commentId).then(comment => {
         if (comment.error) {
-          console.log(
-            'comment getCommentsId error' + JSON.stringify(comment, null, 4)
-          ); //TODO
+          mergeComments([{ id: commentId, timestamp: 0, deleted: false }]);
         } else {
           if (comment.id === commentId) {
             mergeComments([comment]);
@@ -72,7 +74,7 @@ class CommentCreateEditView extends React.Component {
     history.push(`/${category}/${values.parentId}`);
   };
   render() {
-    const { commentId, parentId } = this.props;
+    const { commentId, parentId, post } = this.props;
 
     return (
       <div className="CommentCreateEditView">
@@ -80,9 +82,14 @@ class CommentCreateEditView extends React.Component {
           ? <CommentFormEdit
               parentId={parentId}
               commentId={commentId}
+              post={post}
               onSubmit={this.edit}
             />
-          : <CommentFormAdd parentId={parentId} onSubmit={this.add} />}
+          : <CommentFormAdd
+              parentId={parentId}
+              post={post}
+              onSubmit={this.add}
+            />}
       </div>
     );
   }
@@ -97,11 +104,13 @@ const mapStateToProps = (state, ownProps) => {
     category: category,
     commentId: commentId,
     parentId: parentId,
+    post: state.posts[ownProps.match.params.postId],
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   mergeComments: data => dispatch(syncComments(data)),
+  mergePosts: data => dispatch(syncPosts(data)),
   createComment: data => dispatch(addComment(data)),
   changeComment: data => dispatch(editComment(data)),
 });

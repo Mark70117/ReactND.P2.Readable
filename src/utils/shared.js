@@ -1,5 +1,6 @@
 import React from 'react';
 import { getPostsId, getPostsIdComments } from '../utils/api';
+import uuid from 'js-uuid';
 
 export const getAppropriateComment = (postId, mergeComments) => {
   getPostsIdComments(postId).then(comments => {
@@ -88,6 +89,15 @@ export const doGetPostsId = (mergePosts, postId) => {
   getPostsId(postId).then(post => {
     if (post.error) {
       console.log('post getPostsId error' + JSON.stringify(post, null, 4)); //TODO
+      mergePosts([
+        {
+          id: postId,
+          title: 'Invalid Post',
+          body: uuid.v4(),
+          timestamp: 0,
+          deleted: false,
+        },
+      ]);
     } else {
       if (post.id === postId) {
         mergePosts([post]);
