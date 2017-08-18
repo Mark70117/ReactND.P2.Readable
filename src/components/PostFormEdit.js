@@ -7,7 +7,10 @@ import { Field, reduxForm } from 'redux-form';
 import { renderField, required } from '../utils/shared';
 
 let PostFormEdit = props => {
-  const { handleSubmit, pristine, submitting } = props;
+  const { handleSubmit, initialValues, pristine, submitting } = props;
+  if (!initialValues) {
+    return <div>Loading...</div>;
+  }
   return (
     <form onSubmit={handleSubmit}>
       <Field
@@ -45,7 +48,7 @@ let PostFormEdit = props => {
 
 PostFormEdit.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  initialValues: PropTypes.object.isRequired,
+  initialValues: PropTypes.object, // might be missing before parents talk with server
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
 };

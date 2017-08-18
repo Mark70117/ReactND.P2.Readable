@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import uuid from 'js-uuid';
-import PostFormEdit from './PostFormEdit';
+
 import PostFormAdd from './PostFormAdd';
-import { putPostsId, postPosts } from '../utils/api';
-import { syncPosts, editPost, addPost } from '../actions';
-import { getCategories } from '../utils/api';
-import { syncCategories } from '../actions';
+import PostFormEdit from './PostFormEdit';
+
+import { addPost, editPost, syncCategories, syncPosts } from '../actions';
+import { getCategories, postPosts, putPostsId } from '../utils/api';
+import { doGetPostsId } from '../utils/shared';
 
 class PostCreateEditView extends React.Component {
   static propTypes = {
@@ -21,12 +22,13 @@ class PostCreateEditView extends React.Component {
   };
 
   componentDidMount() {
-    const { categories, setCategories } = this.props;
+    const { categories, mergePosts, postId, setCategories } = this.props;
     if (Object.keys(categories).length === 0) {
       getCategories().then(returnedCategories => {
         setCategories(returnedCategories);
       });
     }
+    doGetPostsId(mergePosts, postId);
   }
 
   add = values => {

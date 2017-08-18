@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+
 import PostDetails from './PostDetails';
-import { getPostsId } from '../utils/api';
+
 import { deletePostsId, postPostsId } from '../utils/api';
 import { syncPosts } from '../actions';
+import { doGetPostsId } from '../utils/shared';
 
 class PostDetailsContainer extends Component {
   static propTypes = {
@@ -15,17 +17,7 @@ class PostDetailsContainer extends Component {
   };
   componentDidMount() {
     const { postId, mergePosts } = this.props;
-    getPostsId(postId).then(post => {
-      if (post.error) {
-        console.log('post getPostsId error' + JSON.stringify(post, null, 4)); //TODO
-      } else {
-        if (post.id === postId) {
-          mergePosts([post]);
-        } else {
-          mergePosts([{ id: postId, timestamp: 0, deleted: true }]);
-        }
-      }
-    });
+    doGetPostsId(mergePosts, postId);
   }
 
   onDelete = () => {

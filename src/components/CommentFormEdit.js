@@ -6,7 +6,14 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
 let CommentFormEdit = props => {
-  const { handleSubmit, pristine, submitting } = props;
+  const { handleSubmit, initialValues, pristine, submitting, parentId } = props;
+  if (!initialValues) {
+    return <div>Loading...</div>;
+  }
+  if (initialValues.parentId !== parentId) {
+    return <div>Invalid Resource</div>;
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { getPostsIdComments } from '../utils/api';
+import { getPostsId, getPostsIdComments } from '../utils/api';
 
 export const getAppropriateComment = (postId, mergeComments) => {
   getPostsIdComments(postId).then(comments => {
@@ -83,3 +83,17 @@ export const renderField = ({
             </span>))}
     </div>
   </div>;
+
+export const doGetPostsId = (mergePosts, postId) => {
+  getPostsId(postId).then(post => {
+    if (post.error) {
+      console.log('post getPostsId error' + JSON.stringify(post, null, 4)); //TODO
+    } else {
+      if (post.id === postId) {
+        mergePosts([post]);
+      } else {
+        mergePosts([{ id: postId, timestamp: 0, deleted: true }]);
+      }
+    }
+  });
+};

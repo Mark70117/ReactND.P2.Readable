@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import uuid from 'js-uuid';
 import CommentFormEdit from './CommentFormEdit';
 import CommentFormAdd from './CommentFormAdd';
-import { putCommentsId, postComments } from '../utils/api';
+import { getCommentsId, putCommentsId, postComments } from '../utils/api';
 import { syncComments, editComment, addComment } from '../actions';
 
 class CommentCreateEditView extends React.Component {
@@ -16,6 +16,25 @@ class CommentCreateEditView extends React.Component {
     mergeComments: PropTypes.func.isRequired,
     parentId: PropTypes.string.isRequired,
   };
+
+  componentDidMount() {
+    const { commentId, mergeComments } = this.props;
+    if (commentId) {
+      getCommentsId(commentId).then(comment => {
+        if (comment.error) {
+          console.log(
+            'comment getCommentsId error' + JSON.stringify(comment, null, 4)
+          ); //TODO
+        } else {
+          if (comment.id === commentId) {
+            mergeComments([comment]);
+          } else {
+            mergeComments([{ id: commentId, timestamp: 0, deleted: true }]);
+          }
+        }
+      });
+    }
+  }
 
   add = values => {
     const { category, createComment, mergeComments, history } = this.props;
