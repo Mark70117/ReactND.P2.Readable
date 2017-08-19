@@ -5,8 +5,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
+import InvalidResource from './InvalidResource';
+
 let CommentFormEdit = props => {
   const {
+    category,
     handleSubmit,
     initialValues,
     pristine,
@@ -18,10 +21,13 @@ let CommentFormEdit = props => {
     return <div>Loading...</div>;
   }
   if (initialValues.parentId !== parentId) {
-    return <div>Invalid Resource</div>;
+    return <InvalidResource />;
   }
   if (post.timestamp === 0) {
-    return <div>Invalid Resource</div>;
+    return <InvalidResource />;
+  }
+  if (post.category !== category) {
+    return <InvalidResource />;
   }
   return (
     <form onSubmit={handleSubmit}>

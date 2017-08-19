@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { dateFromEpochInt } from '../utils/date.js';
 import FaTrash from 'react-icons/lib/fa/trash';
 import FaArrowUp from 'react-icons/lib/fa/arrow-up';
 import FaArrowDown from 'react-icons/lib/fa/arrow-down';
+
 import CommentListContainer from './CommentListContainer';
+import InvalidResource from './InvalidResource';
+
+import { dateFromEpochInt } from '../utils/date.js';
 
 class PostDetails extends Component {
   static propTypes = {
@@ -36,10 +39,10 @@ class PostDetails extends Component {
   }
   livePost(category, post) {
     if (post.timestamp === 0) {
-      return <div>Invalid Resource</div>;
+      return <InvalidResource />;
     }
     if (category !== post.category) {
-      return <div>Invalid Resource</div>;
+      return <InvalidResource />;
     }
     return (
       <div className="post-details">

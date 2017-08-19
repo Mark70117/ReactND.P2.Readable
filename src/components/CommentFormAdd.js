@@ -4,6 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+
+import InvalidResource from './InvalidResource';
+
 import { renderField, required } from '../utils/shared';
 
 let CommentFormAdd = props => {
@@ -12,10 +15,10 @@ let CommentFormAdd = props => {
     return <div>Loading...</div>;
   }
   if (post.timestamp === 0) {
-    return <div>Invalid Resource</div>;
+    return <InvalidResource />;
   }
   if (post.category !== category) {
-    return <div>Invalid Resource</div>;
+    return <InvalidResource />;
   }
 
   return (
