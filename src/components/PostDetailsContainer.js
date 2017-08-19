@@ -13,6 +13,7 @@ class PostDetailsContainer extends Component {
   static propTypes = {
     postId: PropTypes.string.isRequired,
     post: PropTypes.object,
+    category: PropTypes.string.isRequired,
     mergePosts: PropTypes.func.isRequired,
   };
   componentDidMount() {
@@ -49,10 +50,11 @@ class PostDetailsContainer extends Component {
   };
 
   render() {
-    const { post } = this.props;
+    const { category, post } = this.props;
 
     return (
       <PostDetails
+        category={category}
         post={post}
         onDelete={this.onDelete}
         onUpVote={this.onUpVote}

@@ -12,6 +12,7 @@ import { doGetPostsId } from '../utils/shared';
 
 class CommentCreateEditView extends React.Component {
   static propTypes = {
+    category: PropTypes.string.isRequired,
     changeComment: PropTypes.func.isRequired,
     commentId: PropTypes.string,
     createComment: PropTypes.func.isRequired,
@@ -74,18 +75,20 @@ class CommentCreateEditView extends React.Component {
     history.push(`/${category}/${values.parentId}`);
   };
   render() {
-    const { commentId, parentId, post } = this.props;
+    const { category, commentId, parentId, post } = this.props;
 
     return (
       <div className="CommentCreateEditView">
         {commentId
           ? <CommentFormEdit
+              category={category}
               parentId={parentId}
               commentId={commentId}
               post={post}
               onSubmit={this.edit}
             />
           : <CommentFormAdd
+              category={category}
               parentId={parentId}
               post={post}
               onSubmit={this.add}

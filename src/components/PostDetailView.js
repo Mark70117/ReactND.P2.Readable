@@ -4,7 +4,10 @@ import PostDetailsContainer from './PostDetailsContainer';
 
 const PostDetailView = ({ match }) =>
   <div className="PostDetailView">
-    <PostDetailsContainer postId={match.params.postId} />
+    <PostDetailsContainer
+      category={match.params.category}
+      postId={match.params.postId}
+    />
   </div>;
 
 PostDetailView.propTypes = {

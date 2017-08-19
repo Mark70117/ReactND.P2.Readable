@@ -34,8 +34,11 @@ class PostDetails extends Component {
       </div>
     );
   }
-  livePost(post) {
+  livePost(category, post) {
     if (post.timestamp === 0) {
+      return <div>Invalid Resource</div>;
+    }
+    if (category !== post.category) {
       return <div>Invalid Resource</div>;
     }
     return (
@@ -85,10 +88,9 @@ class PostDetails extends Component {
   }
 
   render() {
-    const { post } = this.props;
-    console.log('PostDetails render' + JSON.stringify(post, null, 4));
+    const { category, post } = this.props;
     return post
-      ? post.deleted ? this.deletedPost() : this.livePost(post)
+      ? post.deleted ? this.deletedPost() : this.livePost(category, post)
       : this.loadingPost();
   }
 }
