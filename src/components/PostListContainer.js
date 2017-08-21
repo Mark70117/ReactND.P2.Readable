@@ -85,17 +85,17 @@ class PostListContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = ({ comments, posts, postSortOrder }, ownProps) => {
   const categoryStr = ownProps.match.params.categoryStr
     ? ownProps.match.params.categoryStr
     : '';
 
   return {
-    posts: Object.values(state.posts)
+    posts: Object.values(posts)
       .filter(post => !post.deleted)
       .filter(post => categoryStr === '' || post.category === categoryStr)
-      .sort(state.postSortOrder.func),
-    comments: Object.values(state.comments)
+      .sort(postSortOrder.func),
+    comments: Object.values(comments)
       .filter(comment => !comment.deleted)
       .filter(comment => !comment.parentDeleted),
   };

@@ -12,8 +12,8 @@ CommentSortOrderChangerContainer.propTypes = {
   changeCommentSortOrder: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  value: state.commentSortOrder.str,
+const mapStateToProps = ({ commentSortOrder }) => ({
+  value: commentSortOrder.str,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -64,9 +64,9 @@ class PostDetailsContainer extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = ({ posts }, ownProps) => {
   return {
-    post: state.posts[ownProps.postId],
+    post: posts[ownProps.postId],
   };
 };
 

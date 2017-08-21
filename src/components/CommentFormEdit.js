@@ -60,9 +60,9 @@ CommentFormEdit = reduxForm({
   form: 'commentFormEdit', // a unique identifier for this form
 })(CommentFormEdit);
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = ({ comments }, ownProps) => {
   return {
-    initialValues: state.comments[ownProps.commentId],
+    initialValues: comments[ownProps.commentId],
   };
 };
 

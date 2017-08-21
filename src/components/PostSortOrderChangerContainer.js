@@ -12,8 +12,8 @@ PostSortOrderChangerContainer.propTypes = {
   changePostSortOrder: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  value: state.postSortOrder.str,
+const mapStateToProps = ({ postSortOrder }) => ({
+  value: postSortOrder.str,
 });
 
 const mapDispatchToProps = dispatch => ({

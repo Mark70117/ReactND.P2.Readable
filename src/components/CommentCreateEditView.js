@@ -98,7 +98,7 @@ class CommentCreateEditView extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = ({ posts }, ownProps) => {
   const commentId = ownProps.match.params.commentId;
   const parentId = ownProps.match.params.postId;
   const category = ownProps.match.params.category;
@@ -107,7 +107,7 @@ const mapStateToProps = (state, ownProps) => {
     category: category,
     commentId: commentId,
     parentId: parentId,
-    post: state.posts[ownProps.match.params.postId],
+    post: posts[ownProps.match.params.postId],
   };
 };
 
