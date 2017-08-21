@@ -76,11 +76,9 @@ class PostCreateEditView extends React.Component {
   }
 }
 
-const mapStateToProps = ({ categories }, ownProps) => {
-  const postid = ownProps.match.params.postId;
-
+const mapStateToProps = ({ categories }, { match }) => {
   return {
-    postId: postid,
+    postId: match.params.postId,
     categories: categories,
   };
 };

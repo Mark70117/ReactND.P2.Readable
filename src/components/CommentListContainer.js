@@ -73,10 +73,10 @@ class CommentListContainer extends React.Component {
   }
 }
 
-const mapStateToProps = ({ comments, commentSortOrder }, ownProps) => {
+const mapStateToProps = ({ comments, commentSortOrder }, { postId }) => {
   return {
     comments: Object.values(comments)
-      .filter(comment => comment.parentId === ownProps.postId)
+      .filter(comment => comment.parentId === postId)
       .filter(comment => !comment.deleted)
       .filter(comment => !comment.parentDeleted)
       .sort(commentSortOrder.func),

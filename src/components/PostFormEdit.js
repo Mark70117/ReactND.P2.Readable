@@ -63,9 +63,9 @@ PostFormEdit = reduxForm({
   form: 'postFormEdit', // a unique identifier for this form
 })(PostFormEdit);
 
-const mapStateToProps = ({ posts }, ownProps) => {
+const mapStateToProps = ({ posts }, { postId }) => {
   return {
-    initialValues: posts[ownProps.postId],
+    initialValues: posts[postId],
   };
 };
 

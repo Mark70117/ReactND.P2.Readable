@@ -85,10 +85,8 @@ class PostListContainer extends React.Component {
   }
 }
 
-const mapStateToProps = ({ comments, posts, postSortOrder }, ownProps) => {
-  const categoryStr = ownProps.match.params.categoryStr
-    ? ownProps.match.params.categoryStr
-    : '';
+const mapStateToProps = ({ comments, posts, postSortOrder }, { match }) => {
+  const categoryStr = match.params.categoryStr ? match.params.categoryStr : '';
 
   return {
     posts: Object.values(posts)

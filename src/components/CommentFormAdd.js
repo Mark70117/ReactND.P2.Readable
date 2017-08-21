@@ -59,9 +59,9 @@ CommentFormAdd = reduxForm({
   form: 'commentFormAdd', // a unique identifier for this form
 })(CommentFormAdd);
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, { parentId }) => {
   return {
-    initialValues: { parentId: ownProps.parentId },
+    initialValues: { parentId },
   };
 };
 
